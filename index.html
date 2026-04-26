@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Travel Tracker</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f4f1;color:#1a1a1a;min-height:100vh}
+.app{max-width:960px;margin:0 auto;padding:2rem 1rem}
+.header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.5rem;flex-wrap:wrap;gap:12px}
+.header h1{font-size:22px;font-weight:500}
+.header-sub{font-size:13px;color:#888;margin-top:3px}
+.header-right{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+button{cursor:pointer;border:.5px solid #ccc;background:#fff;border-radius:8px;padding:6px 14px;font-size:13px;font-family:inherit;color:#1a1a1a;transition:background .15s}
+button:hover{background:#efefec}
+button.active{background:#1a1a1a;color:#fff;border-color:#1a1a1a}
+button.primary{background:#185FA5;color:#fff;border-color:#185FA5}
+button.primary:hover{background:#1050a0}
+input,select{border:.5px solid #ccc;border-radius:8px;padding:7px 10px;font-size:13px;font-family:inherit;color:#1a1a1a;background:#fff;width:100%;outline:none}
+input:focus,select:focus{border-color:#666}
+label{font-size:12px;color:#666;display:block;margin-bottom:4px}
+.form-panel{background:#efefec;border-radius:12px;padding:1rem 1.25rem;margin-bottom:1.5rem;border:.5px solid #ddd}
+.form-panel h3{font-size:14px;font-weight:500;margin-bottom:12px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.ff{margin-bottom:10px}
+.month-group{margin-bottom:1.75rem}
+.month-label{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.07em;border-bottom:.5px solid #ddd;padding-bottom:7px;margin-bottom:10px}
+.entry-list{display:flex;flex-direction:column;gap:6px}
+.entry-card{background:#fff;border:.5px solid #e5e5e5;border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.entry-date{min-width:42px;text-align:center;flex-shrink:0}
+.date-num{font-size:20px;font-weight:500;line-height:1}
+.date-dow{font-size:11px;color:#aaa;margin-top:2px}
+.vline{width:1px;height:34px;background:#e5e5e5;flex-shrink:0}
+.badge{font-size:11px;padding:3px 7px;border-radius:6px;font-weight:500;letter-spacing:.04em;white-space:nowrap}
+.flt{background:#E6F1FB;color:#185FA5}
+.pkg{background:#FAEEDA;color:#854F0B}
+.apt{background:#E8F5E9;color:#2E7D32}
+.t-raj{background:#E6F1FB;color:#185FA5}
+.t-kokeela{background:#FBEAF0;color:#993556}
+.t-both{background:#E1F5EE;color:#0F6E56}
+.t-pranjali{background:#EEEDFE;color:#3C3489}
+.t-vedant{background:#FAECE7;color:#993C1D}
+.t-praneet{background:#EAF3DE;color:#3B6D11}
+.entry-route{flex:1;min-width:120px}
+.route-main{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:14px;font-weight:500}
+.route-sub{font-size:12px;color:#888;margin-top:3px}
+.conf{font-size:12px;font-family:monospace;color:#999;min-width:58px;text-align:right;flex-shrink:0}
+a.olink{font-size:12px;color:#185FA5;text-decoration:none;white-space:nowrap}
+a.olink:hover{text-decoration:underline}
+.act-btn{font-size:12px;padding:3px 8px;opacity:.5}
+.del-btn{font-size:12px;padding:3px 8px;opacity:.5;color:#c0392b}
+
+/* calendar */
+.cal-wrap{display:grid;grid-template-columns:1fr 300px;gap:1.5rem;align-items:start}
+.cal-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
+.cal-nav h2{font-size:16px;font-weight:500}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.cal-hdr{text-align:center;font-size:11px;color:#888;font-weight:500;padding:4px 0}
+.cal-day{min-height:60px;background:#fff;border:.5px solid #e5e5e5;border-radius:8px;padding:6px;cursor:pointer;transition:border-color .15s}
+.cal-day:hover{border-color:#999}
+.cal-day.other{background:#f5f4f1;opacity:.4;cursor:default;pointer-events:none}
+.cal-day.today{border-color:#185FA5}
+.cal-day.selected{border-color:#1a1a1a;border-width:1.5px}
+.cal-day-num{font-size:13px;font-weight:500;margin-bottom:4px}
+.dots{display:flex;flex-wrap:wrap;gap:2px}
+.dot{width:6px;height:6px;border-radius:50%}
+.dot-f{background:#185FA5}
+.dot-p{background:#BA7517}
+.dot-a{background:#2E7D32}
+.cal-detail{background:#fff;border:.5px solid #e5e5e5;border-radius:12px;padding:1rem;position:sticky;top:1rem}
+.detail-title{font-size:13px;font-weight:500;color:#888;margin-bottom:12px;padding-bottom:8px;border-bottom:.5px solid #f0f0f0}
+.detail-entry{padding:8px 0;border-bottom:.5px solid #f5f5f5}
+.detail-entry:last-child{border-bottom:none}
+
+/* footer */
+.footer{margin-top:2rem;border-top:.5px solid #ddd;padding-top:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.footer-left{font-size:12px;color:#aaa;display:flex;align-items:center;gap:8px}
+.mode-pill{font-size:11px;padding:2px 8px;border-radius:20px;background:#e5e5e5;color:#666}
+
+@media(max-width:640px){
+  .g3{grid-template-columns:1fr}
+  .g2{grid-template-columns:1fr}
+  .cal-wrap{grid-template-columns:1fr}
+  .cal-day{min-height:44px}
+  .cal-detail{position:static}
+}
+</style>
+</head>
+<body>
+<div class="app"><div id="root"></div></div>
+<script>
+// ── INITIAL DATA ──────────────────────────────────────────────────────────────
+const INITIAL_DATA=[
+  {id:"1", date:"2026-04-30",type:"parking",traveler:"Raj",    from:"CLT",to:"",   airline:"The Parking Spot CLT", flightNum:"",       confirmation:"",          depart:"3:00 PM",  arrive:"May 6 3PM",    link:"https://mail.google.com/mail/u/0/?tab=rm&ogbl#search/parkingspot/FMfcgzQgLPMRTkCKkpDPMrkPWXWcWqjs", notes:"Uncovered self-park · 6210 Wilkinson Blvd · checkout May 6 3PM"},
+  {id:"2", date:"2026-04-30",type:"flight", traveler:"Raj",    from:"CLT",to:"ORD",airline:"Frontier",             flightNum:"F94825", confirmation:"P9YRTR",    depart:"4:19 PM",  arrive:"5:53 PM",      link:"https://mail.google.com/mail/u/0/?tab=rm&ogbl#search/frontier/FMfcgzQgLPMRTkBPbzhGlCJPLmcZVtsv", notes:""},
+  {id:"3", date:"2026-05-06",type:"flight", traveler:"Raj",    from:"ORD",to:"CLT",airline:"American Airlines",    flightNum:"AA 1389",confirmation:"HXPGAJ",    depart:"7:15 AM",  arrive:"10:28 AM",     link:"https://mail.google.com/mail/u/0/?tab=rm&ogbl#search/HXPGAJ/FMfcgzQgLPMRTkBrRfDBGPMHFpjkxVjv", notes:""},
+  {id:"4", date:"2026-05-20",type:"flight", traveler:"Raj",    from:"CLT",to:"ORD",airline:"American Airlines",    flightNum:"AA 2279",confirmation:"WFTGDC",    depart:"6:00 PM",  arrive:"7:22 PM",      link:"https://mail.google.com/mail/u/0/?tab=rm&ogbl#search/WFTGDC/FMfcgzQgLFmZbFDvPQcMPCsCCVSQSqbV", notes:"Basic Economy"},
+  {id:"5b",date:"2026-05-22",type:"parking",traveler:"Kokeela",from:"ORD",to:"",   airline:"SpotHero · Routes Airport Parking",flightNum:"",confirmation:"#120856962",depart:"7:30 AM",  arrive:"May 26 7:30 AM",link:"https://mail.google.com/mail/u/0/#search/kokeela/FMfcgzQgLXmMZgjdwLTmStcVFkxFzxGZ", notes:"Uncovered Valet · Subaru Crosstrek DY37282 · $60.64"},
+  {id:"6", date:"2026-05-22",type:"flight", traveler:"Raj",    from:"ORD",to:"YQB",airline:"American Airlines",    flightNum:"AA4705", confirmation:"DARNVS",    depart:"9:29 AM",  arrive:"1:17 PM",      link:"https://mail.google.com/mail/u/0/?tab=rm&ogbl#search/DARNVS/FMfcgzQgLPHqNtVngVvDxCkVBZfkJKMQ", notes:"Quebec"},
+  {id:"7", date:"2026-05-25",type:"flight", traveler:"Raj",    from:"YQB",to:"ORD",airline:"American Airlines",    flightNum:"AA4706", confirmation:"HTUTCX",    depart:"1:57 PM",  arrive:"4:02 PM",      link:"https://mail.google.com/mail/u/0/?tab=rm&ogbl#search/DARNVS/FMfcgzQgLPHqNtVngVvDxCkVBZfkJKMQ", notes:"Quebec return"},
+  {id:"8", date:"2026-05-27",type:"flight", traveler:"Raj",    from:"ORD",to:"CLT",airline:"American Airlines",    flightNum:"AA 3222",confirmation:"WFTGDC",    depart:"7:58 AM",  arrive:"11:09 AM",     link:"https://mail.google.com/mail/u/0/?tab=rm&ogbl#search/WFTGDC/FMfcgzQgLFmZbFDvPQcMPCsCCVSQSqbV", notes:"Basic Economy"},
+  {id:"9b",date:"2026-06-11",type:"parking",traveler:"Raj",    from:"CLT",to:"",   airline:"Raj Skyla Office",             flightNum:"",       confirmation:"",          depart:"1:00 PM",  arrive:"",             link:"", notes:""},
+  {id:"9", date:"2026-06-11",type:"flight", traveler:"Raj",    from:"CLT",to:"ORD",airline:"American Airlines",    flightNum:"AA 536", confirmation:"YIRSYS",    depart:"4:20 PM",  arrive:"5:35 PM",      link:"https://mail.google.com/mail/u/0/?tab=rm&ogbl#search/YIRSYS/FMfcgzQdzcwJNdGbfRpvklFqrwZtbzlb", notes:"Seat 19F"},
+  {id:"10",date:"2026-06-21",type:"flight", traveler:"Raj",    from:"ORD",to:"CLT",airline:"American Airlines",    flightNum:"AA 1784",confirmation:"YIRSYS",    depart:"7:00 AM",  arrive:"9:59 AM",      link:"https://mail.google.com/mail/u/0/?tab=rm&ogbl#search/YIRSYS/FMfcgzQdzcwJNdGbfRpvklFqrwZtbzlb", notes:""},
+  {id:"10b",date:"2026-07-02",type:"parking",traveler:"Raj",    from:"CLT",to:"",   airline:"Raj Office",                   flightNum:"",       confirmation:"",          depart:"1:00 PM",  arrive:"",             link:"", notes:""},
+  {id:"11",date:"2026-07-02",type:"flight", traveler:"Raj",    from:"CLT",to:"ORD",airline:"American Airlines",    flightNum:"AA 2488",confirmation:"LZJRYG",    depart:"6:26 PM",  arrive:"7:54 PM",      link:"https://mail.google.com/mail/u/0/?tab=rm&ogbl#search/LZJRYG/FMfcgzQgLPLKhpZmCjfLZdBsMWQhnSWM", notes:"Economy (B)"},
+  {id:"11b",date:"2026-07-03",type:"parking",traveler:"Kokeela",from:"ORD",to:"",   airline:"SpotHero · Routes Airport Parking",flightNum:"",confirmation:"#120856643",depart:"8:30 AM",  arrive:"Jul 13 8:30 AM",link:"https://mail.google.com/mail/u/0/#search/kokeela/FMfcgzQgLXmMZgjdwLTmStcVFkxFzxGZ", notes:"Uncovered Valet · Subaru Forester DY37282 · $148.13"},
+  {id:"12",date:"2026-07-03",type:"flight", traveler:"Both",   from:"ORD",to:"ANC",airline:"Alaska Airlines",      flightNum:"AS 1546",confirmation:"FXQIQV",    depart:"10:00 AM", arrive:"1:42 PM",      link:"https://mail.google.com/mail/u/0/?tab=rm&ogbl#search/alaska/FMfcgzQgLPLJJhkdvgphbCtdKSqFffFC", notes:"Raj 18E · Kokeela 18F"},
+  {id:"13",date:"2026-07-09",type:"flight", traveler:"Both",   from:"ANC",to:"JNU",airline:"Alaska Airlines",      flightNum:"AS 66",  confirmation:"FXQIQV",    depart:"1:17 PM",  arrive:"5:40 PM",      link:"https://mail.google.com/mail/u/0/?tab=rm&ogbl#search/alaska/FMfcgzQgLPLJJhkdvgphbCtdKSqFffFC", notes:"Juneau · Raj 18F · Kokeela 18E"},
+  {id:"14",date:"2026-07-12",type:"flight", traveler:"Both",   from:"JNU",to:"SEA",airline:"Alaska Airlines",      flightNum:"AS 66",  confirmation:"FXQIQV",    depart:"6:31 PM",  arrive:"9:57 PM",      link:"https://mail.google.com/mail/u/0/?tab=rm&ogbl#search/alaska/FMfcgzQgLPLJJhkdvgphbCtdKSqFffFC", notes:"Raj 24B · Kokeela 24A"},
+  {id:"15",date:"2026-07-13",type:"flight", traveler:"Both",   from:"SEA",to:"ORD",airline:"Alaska Airlines",      flightNum:"AS 328", confirmation:"FXQIQV",    depart:"12:17 AM", arrive:"6:20 AM",      link:"https://mail.google.com/mail/u/0/?tab=rm&ogbl#search/alaska/FMfcgzQgLPLJJhkdvgphbCtdKSqFffFC", notes:"Raj 20E · Kokeela 20F"},
+  {id:"16",date:"2026-07-14",type:"flight", traveler:"Raj",    from:"ORD",to:"CLT",airline:"American Airlines",    flightNum:"AA 1784",confirmation:"LZJRYG",    depart:"7:00 AM",  arrive:"10:08 AM",     link:"https://mail.google.com/mail/u/0/?tab=rm&ogbl#search/LZJRYG/FMfcgzQgLPLKhpZmCjfLZdBsMWQhnSWM", notes:"Economy (B)"},
+  {id:"17",date:"2026-08-01",type:"flight", traveler:"Raj",    from:"CLT",to:"LAS",airline:"American Airlines",    flightNum:"AA 2038",confirmation:"NBCAOY",    depart:"11:26 AM", arrive:"1:06 PM",      link:"https://mail.google.com/mail/u/0/?tab=rm&ogbl#search/NBCAOY/FMfcgzQgLXnVvDPsrsDZvlljTqPCMtMV", notes:"Seat 15A · Las Vegas"},
+  {id:"18",date:"2026-08-01",type:"flight", traveler:"Kokeela",from:"ORD",to:"LAS",airline:"American Airlines",    flightNum:"",       confirmation:"PRTOER",    depart:"",         arrive:"",             link:"", notes:"Las Vegas · Kokeela"},
+  {id:"19",date:"2026-08-06",type:"flight", traveler:"Raj",    from:"LAS",to:"CLT",airline:"American Airlines",    flightNum:"AA 2470",confirmation:"NBCAOY",    depart:"2:03 PM",  arrive:"9:44 PM",      link:"https://mail.google.com/mail/u/0/?tab=rm&ogbl#search/NBCAOY/FMfcgzQgLXnVvDPsrsDZvlljTqPCMtMV", notes:"Seat 19D"},
+  {id:"20",date:"2026-08-06",type:"flight", traveler:"Kokeela",from:"LAS",to:"CLT",airline:"American Airlines",    flightNum:"",       confirmation:"PRTOER",    depart:"",         arrive:"",             link:"", notes:""},
+  {id:"21",date:"2026-08-09",type:"flight", traveler:"Kokeela",from:"CLT",to:"ORD",airline:"American Airlines",    flightNum:"",       confirmation:"PRTOER",    depart:"",         arrive:"",             link:"", notes:""},
+  {id:"22",date:"2026-07-22",type:"flight", traveler:"Raj",    from:"CLT",to:"ORD",airline:"American Airlines",    flightNum:"AA 2488",confirmation:"BVTNCN",    depart:"6:26 PM",  arrive:"7:54 PM",      link:"https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox/FMfcgzQgLXqnzBrkqWTvxnrdGCkpJwhL", notes:"Seat 20F · Economy (Q)"},
+  {id:"22b",date:"2026-07-22",type:"parking",traveler:"Raj",   from:"CLT",to:"",   airline:"The Parking Spot",                 flightNum:"",       confirmation:"",          depart:"3:00 PM",  arrive:"Jul 28 3:00 PM",link:"https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLXrwjBJPrqBshrPlZWjcSLSC", notes:"Uncovered self-park · 6210 Wilkinson Blvd, Charlotte NC 28214 · 704-398-3776"},
+  {id:"23",date:"2026-07-27",type:"flight", traveler:"Raj",    from:"ORD",to:"CLT",airline:"American Airlines",    flightNum:"AA 2917",confirmation:"BVTNCN",    depart:"5:33 PM",  arrive:"8:50 PM",      link:"https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox/FMfcgzQgLXqnzBrkqWTvxnrdGCkpJwhL", notes:"Seat 13F · Economy (N)"},
+  {id:"24",date:"2026-08-14",type:"appt",   traveler:"Raj",    from:"Lake Forest",to:"",airline:"Internal Medicine Lake Forest",flightNum:"",confirmation:"",depart:"1:00 PM",arrive:"",link:"https://www.northshoreconnect.org/MyChart/Visits/visitdetails?csn=WP-24Wg7zwSTAeOEdOnYMChP4jw-3D-3D-24JWsBqAubUiB4FtXXBC81UWFpve-2Bt4az9W3IbgGoWwsM-3D#", notes:"Regan Christopoulos MD · 915 S. Waukegan Rd, Lake Forest IL 60045 · 847-234-8866"},
+  {id:"29b",date:"2026-08-13",type:"parking",traveler:"Raj",    from:"CLT",to:"",   airline:"The Parking Spot",                 flightNum:"",       confirmation:"#126099619",depart:"1:30 PM",  arrive:"Aug 18 1:30 PM",link:"https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLXrwjBJPrqBshrPlZWjcSLSC", notes:"Uncovered self-park · 6210 Wilkinson Blvd, Charlotte NC 28214 · 704-398-3776 · $54.17 due at exit"},
+  {id:"29",date:"2026-08-13",type:"flight", traveler:"Raj",    from:"CLT",to:"ORD",airline:"American Airlines",    flightNum:"AA 536", confirmation:"EWWQES",    depart:"4:18 PM",  arrive:"5:39 PM",      link:"https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLXrwXfsNVTmrmdfBwXcMBJNv", notes:"Economy (B)"},
+  {id:"30",date:"2026-08-18",type:"flight", traveler:"Raj",    from:"ORD",to:"CLT",airline:"American Airlines",    flightNum:"AA 2080",confirmation:"EWWQES",    depart:"8:54 AM",  arrive:"12:02 PM",     link:"https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLXrwXfsNVTmrmdfBwXcMBJNv", notes:"Economy (B)"},
+  {id:"27",date:"2026-08-01",type:"parking",traveler:"Kokeela",from:"ORD",to:"",   airline:"SpotHero · Routes Airport Parking",flightNum:"",confirmation:"#121859199",depart:"11:00 AM",arrive:"Aug 10 11:00 AM",link:"https://spothero.com/parking-pass/121859199?key=5a85d736e6bb431c4154b5859f75722f508321258d2db10a0a802a5a3134c688#parking-instructions", notes:"Valet · 3901 Mannheim Rd, Schiller Park IL · Subaru Outback DY37282 · $133.42 · Shuttle to ORD on demand (6 min) · 847-671-4000"},
+  {id:"28",date:"2026-05-20",type:"parking",traveler:"Raj",    from:"CLT",to:"",   airline:"The Parking Spot",                 flightNum:"",confirmation:"",           depart:"4:00 PM",  arrive:"May 27 4:00 PM",link:"https://mail.google.com/mail/u/0/#search/125886656/FMfcgzQgLPMRTkCKkpDPMrkPWXWcWqjs", notes:"Uncovered self-park · 6210 Wilkinson Blvd, Charlotte NC 28214 · 704-398-3776"}
+];
+
+// ── STORAGE ───────────────────────────────────────────────────────────────────
+const isLocal = false; // always use Cloudflare Worker
+
+// Cloudflare Worker endpoints — update these after deploying your Worker
+const CF_LOAD = 'https://travel-ap.rathirajk.workers.dev/api/load';
+const CF_SAVE = 'https://travel-ap.rathirajk.workers.dev/api/save';
+
+const store = {
+  async load() {
+    if (isLocal) {
+      // 1. Try data.json in same folder (works if served by a local server)
+      try {
+        const r = await fetch('data.json?' + Date.now(), {cache:'no-store'});
+        if (r.ok) { const d = await r.json(); if (Array.isArray(d)) return d; }
+      } catch(_) {}
+      // 2. Fallback to localStorage
+      const d = localStorage.getItem('travel-tracker-v1');
+      return d ? JSON.parse(d) : null;
+    } else {
+      try {
+        const r = await fetch(CF_LOAD);
+        if (r.ok) { const d = await r.json(); if (Array.isArray(d)) return d; }
+      } catch(_) {}
+      return null;
+    }
+  },
+  async save(data) {
+    if (isLocal) {
+      localStorage.setItem('travel-tracker-v1', JSON.stringify(data));
+    } else {
+      try {
+        await fetch(CF_SAVE, {
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify(data)
+        });
+      } catch(_) {}
+    }
+  }
+};
+
+const TRAVELERS = ['Raj','Kokeela','Both','Pranjali','Vedant','Praneet'];
+let entries = [...INITIAL_DATA];
+let view = 'list';
+let showForm = false;
+let editId = null;
+let filterTraveler = 'All';
+let form = ef();
+let calY = 2026, calM = 3; // April 2026 (0-indexed month)
+let selDay = null;
+
+function ef() {
+  return {date:'',type:'flight',traveler:'Raj',from:'',to:'',airline:'American Airlines',flightNum:'',confirmation:'',depart:'',arrive:'',link:'',notes:''};
+}
+
+// ── HELPERS ───────────────────────────────────────────────────────────────────
+function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function escHref(s){ return (s||'').replace(/&/g,'&amp;'); }
+function monthStr(y,m){ return new Date(y,m,1).toLocaleDateString('en-US',{month:'long',year:'numeric'}); }
+function dowStr(iso){ const [y,mo,d]=iso.split('-'); return new Date(+y,+mo-1,+d).toLocaleDateString('en-US',{weekday:'short'}); }
+function isoYMD(y,m,d){ return `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`; }
+function tClass(t){ const m={'Raj':'t-raj','Kokeela':'t-kokeela','Both':'t-both','Pranjali':'t-pranjali','Vedant':'t-vedant','Praneet':'t-praneet'}; return m[t]||'t-raj'; }
+function sub(e){ return [e.airline, e.depart&&e.arrive?`${e.depart} – ${e.arrive}`:e.depart, e.notes].filter(Boolean).join(' · ').replace(/\n/g,'<br>'); }
+
+// ── CARD HTML ─────────────────────────────────────────────────────────────────
+function cardHtml(e, compact) {
+  const s = sub(e);
+  if (compact) {
+    return `<div class="detail-entry">
+      <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:3px">
+        <span class="badge ${e.type==='flight'?'flt':e.type==='appt'?'apt':'pkg'}">${e.type==='flight'?'FLT':e.type==='appt'?'APPT':'PKG'}</span>
+        <span style="font-size:14px;font-weight:500">${esc(e.from)}${e.to?' → '+esc(e.to):''}</span>
+        ${e.flightNum?`<span style="font-size:12px;color:#888">${esc(e.flightNum)}</span>`:''}
+        <span class="badge ${tClass(e.traveler)}" style="margin-left:auto">${esc(e.traveler)}</span>
+      </div>
+      <div style="font-size:12px;color:#888">${esc(s)}</div>
+      ${e.confirmation?`<div style="font-size:12px;color:#aaa;font-family:monospace">${esc(e.confirmation)}</div>`:''}
+      ${e.link?`<a class="olink" href="${escHref(e.link)}" target="_blank">open ↗</a>`:''}
+    </div>`;
+  }
+  return `<div class="entry-card">
+    <div class="entry-date">
+      <div class="date-num">${e.date.slice(8)}</div>
+      <div class="date-dow">${dowStr(e.date)}</div>
+    </div>
+    <div class="vline"></div>
+    <span class="badge ${e.type==='flight'?'flt':e.type==='appt'?'apt':'pkg'}">${e.type==='flight'?'FLT':e.type==='appt'?'APPT':'PKG'}</span>
+    <div class="entry-route">
+      <div class="route-main">
+        <span>${esc(e.from)}</span>
+        ${e.to?`<span style="color:#ccc">→</span><span>${esc(e.to)}</span>`:''}
+        ${e.flightNum?`<span style="font-weight:400;font-size:12px;color:#888">· ${esc(e.flightNum)}</span>`:''}
+      </div>
+      <div class="route-sub">${esc(s)}</div>
+    </div>
+    ${e.confirmation?`<span class="conf">${esc(e.confirmation)}</span>`:''}
+    <span class="badge ${tClass(e.traveler)}">${esc(e.traveler)}</span>
+    ${e.link?`<a class="olink" href="${escHref(e.link)}" target="_blank">open ↗</a>`:''}
+    <button class="act-btn" data-edit="${esc(e.id)}">edit</button>
+    <button class="del-btn" data-del="${esc(e.id)}">&#215;</button>
+  </div>`;
+}
+
+function parseTime(t) {
+  if (!t) return 9999;
+  const m = t.match(/(\d+):(\d+)\s*(AM|PM)/i);
+  if (!m) return 9999;
+  let h = +m[1], min = +m[2];
+  if (m[3].toUpperCase()==='PM' && h!==12) h+=12;
+  if (m[3].toUpperCase()==='AM' && h===12) h=0;
+  return h*60+min;
+}
+
+// ── LIST VIEW ─────────────────────────────────────────────────────────────────
+function listHtml() {
+  const sorted = [...entries]
+    .filter(e => filterTraveler==='All' || e.traveler===filterTraveler)
+    .sort((a,b) => {
+      const dc = a.date.localeCompare(b.date);
+      if (dc !== 0) return dc;
+      return parseTime(a.depart) - parseTime(b.depart);
+    });
+  const grouped = sorted.reduce((acc,e)=>{ const k=e.date.slice(0,7); (acc[k]=acc[k]||[]).push(e); return acc; },{});
+  if (!Object.keys(grouped).length) return `<p style="color:#aaa;font-size:14px;padding:2rem 0">No entries found.</p>`;
+  return Object.entries(grouped).map(([mo,rows])=>`
+    <div class="month-group">
+      <div class="month-label">${monthStr(+mo.slice(0,4),+mo.slice(5,7)-1)}</div>
+      <div class="entry-list">${rows.map(e=>cardHtml(e,false)).join('')}</div>
+    </div>`).join('');
+}
+
+// ── CALENDAR VIEW ─────────────────────────────────────────────────────────────
+function calHtml() {
+  const today = new Date().toISOString().slice(0,10);
+  const firstDow = new Date(calY, calM, 1).getDay();
+  const dim = new Date(calY, calM+1, 0).getDate();
+  const prevDim = new Date(calY, calM, 0).getDate();
+
+  const dateMap = {};
+  entries.forEach(e=>{ (dateMap[e.date]=dateMap[e.date]||[]).push(e); });
+
+  const hdrs = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(h=>`<div class="cal-hdr">${h}</div>`).join('');
+  let days = '';
+
+  for (let i=firstDow-1;i>=0;i--) days+=`<div class="cal-day other"><div class="cal-day-num" style="color:#ccc">${prevDim-i}</div></div>`;
+
+  for (let d=1;d<=dim;d++) {
+    const iso = isoYMD(calY,calM,d);
+    const de = dateMap[iso]||[];
+    const cls = ['cal-day', iso===today?'today':'', iso===selDay?'selected':''].filter(Boolean).join(' ');
+    const dots = de.map(e=>`<span class="dot ${e.type==='flight'?'dot-f':e.type==='appt'?'dot-a':'dot-p'}"></span>`).join('');
+    days+=`<div class="${cls}" data-day="${iso}"><div class="cal-day-num">${d}</div><div class="dots">${dots}</div></div>`;
+  }
+
+  const filled = firstDow + dim;
+  const total = Math.ceil(filled/7)*7;
+  for (let i=filled,nd=1;i<total;i++,nd++) days+=`<div class="cal-day other"><div class="cal-day-num" style="color:#ccc">${nd}</div></div>`;
+
+  let detail = '';
+  if (selDay) {
+    const de = entries.filter(e=>e.date===selDay);
+    const [sy,sm,sd] = selDay.split('-');
+    const ds = new Date(+sy,+sm-1,+sd).toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
+    detail = `<div class="detail-title">${ds}</div>`;
+    if (!de.length) detail += `<p style="font-size:13px;color:#aaa">No trips</p>`;
+    else detail += de.map(e=>cardHtml(e,true)).join('');
+  } else {
+    detail = `<div class="detail-title" style="color:#ccc">Select a day to see trips</div>`;
+  }
+
+  return `
+    <div class="cal-nav">
+      <button id="calPrev">&#8592; prev</button>
+      <h2>${monthStr(calY,calM)}</h2>
+      <button id="calNext">next &#8594;</button>
+    </div>
+    <div class="cal-wrap">
+      <div><div class="cal-grid">${hdrs}${days}</div></div>
+      <div class="cal-detail">${detail}</div>
+    </div>`;
+}
+
+// ── FORM HTML ─────────────────────────────────────────────────────────────────
+function formHtml() {
+  const f = form;
+  const fi = (k,ph) => `<input type="text" data-f="${k}" value="${esc(f[k]||'')}" placeholder="${ph||''}">`;
+  return `<div class="form-panel">
+    <h3>${editId?'Edit entry':'New entry'}</h3>
+    <div class="g3">
+      <div><label>Date *</label><input type="date" data-f="date" value="${f.date}"></div>
+      <div><label>Type</label><select data-f="type">${['flight','parking','appt'].map(v=>`<option${f.type===v?' selected':''}>${v}</option>`).join('')}</select></div>
+      <div><label>Traveler</label><select data-f="traveler">${TRAVELERS.map(v=>`<option${f.traveler===v?' selected':''}>${v}</option>`).join('')}</select></div>
+    </div>
+    <div class="g2">
+      <div><label>From *</label>${fi('from','CLT')}</div>
+      <div><label>To</label>${fi('to','ORD')}</div>
+    </div>
+    <div class="g2">
+      <div><label>Airline / Facility</label>${fi('airline','')}</div>
+      <div><label>Flight #</label>${fi('flightNum','AA 1234')}</div>
+    </div>
+    <div class="g3">
+      <div><label>Confirmation</label>${fi('confirmation','')}</div>
+      <div><label>Depart</label>${fi('depart','9:00 AM')}</div>
+      <div><label>Arrive</label>${fi('arrive','11:00 AM')}</div>
+    </div>
+    <div class="ff"><label>Link</label>${fi('link','https://...')}</div>
+    <div class="ff"><label>Notes</label>${fi('notes','')}</div>
+    <div style="display:flex;gap:8px;margin-top:4px">
+      <button class="primary" id="saveBtn">${editId?'Update':'Save'}</button>
+      <button id="cancelBtn">Cancel</button>
+    </div>
+  </div>`;
+}
+
+// ── MAIN RENDER ───────────────────────────────────────────────────────────────
+function render() {
+  const root = document.getElementById('root');
+  const modeLabel = isLocal ? (location.protocol==='file:' ? 'file mode' : 'localhost mode') : 'cloudflare mode';
+
+  root.innerHTML = `
+    <div class="header">
+      <div>
+        <h1>Travel itinerary</h1>
+        <div class="header-sub">${entries.length} entries · sorted by date</div>
+      </div>
+      <div class="header-right">
+        <select id="fltSel" style="width:auto">
+          ${['All',...TRAVELERS].map(v=>`<option${filterTraveler===v?' selected':''}>${v}</option>`).join('')}
+        </select>
+        <button id="btnList" class="${view==='list'?'active':''}">List</button>
+        <button id="btnCal"  class="${view==='calendar'?'active':''}">Calendar</button>
+        <button id="btnForm">${showForm?'Cancel':'+ Add'}</button>
+      </div>
+    </div>
+    ${showForm ? formHtml() : ''}
+    <div id="view-area">${view==='list' ? listHtml() : calHtml()}</div>
+    <div class="footer">
+      <div class="footer-left">
+        <span class="mode-pill">${modeLabel}</span>
+        <button id="exportBtn" style="border:none;background:none;color:#aaa;text-decoration:underline;padding:0;font-size:12px">Export JSON</button>
+      </div>
+      <button id="resetBtn" style="font-size:12px;opacity:.4">Reset to original</button>
+    </div>`;
+
+  // Header controls
+  document.getElementById('fltSel').onchange = e => { filterTraveler=e.target.value; render(); };
+  document.getElementById('btnList').onclick = () => { view='list'; render(); };
+  document.getElementById('btnCal').onclick  = () => { view='calendar'; render(); };
+  document.getElementById('btnForm').onclick = () => {
+    showForm=!showForm; if(!showForm){editId=null;form=ef();} render();
+  };
+  document.getElementById('exportBtn').onclick = exportJSON;
+  document.getElementById('resetBtn').onclick = () => {
+    if(confirm('Reset all data to original 28 entries?')){ entries=[...INITIAL_DATA]; store.save(entries); render(); }
+  };
+
+  // Form controls
+  if (showForm) {
+    document.querySelectorAll('[data-f]').forEach(el => {
+      el.oninput = el.onchange = () => { form[el.dataset.f] = el.value; };
+    });
+    document.getElementById('saveBtn').onclick = saveEntry;
+    document.getElementById('cancelBtn').onclick = () => { showForm=false; editId=null; form=ef(); render(); };
+  }
+
+  // List edit/delete
+  document.querySelectorAll('[data-edit]').forEach(btn => {
+    btn.onclick = () => {
+      const e = entries.find(x=>x.id===btn.dataset.edit);
+      if(!e) return;
+      form={...e}; editId=e.id; showForm=true;
+      render(); window.scrollTo({top:0,behavior:'smooth'});
+    };
+  });
+  document.querySelectorAll('[data-del]').forEach(btn => {
+    btn.onclick = () => {
+      if(!confirm('Delete this entry?')) return;
+      entries=entries.filter(x=>x.id!==btn.dataset.del);
+      store.save(entries); render();
+    };
+  });
+
+  // Calendar controls
+  if (view==='calendar') {
+    document.getElementById('calPrev').onclick = () => {
+      calM--; if(calM<0){calM=11;calY--;} selDay=null; render();
+    };
+    document.getElementById('calNext').onclick = () => {
+      calM++; if(calM>11){calM=0;calY++;} selDay=null; render();
+    };
+    document.querySelectorAll('[data-day]').forEach(el => {
+      el.onclick = () => { selDay=el.dataset.day; render(); };
+    });
+  }
+}
+
+// ── ACTIONS ───────────────────────────────────────────────────────────────────
+function saveEntry() {
+  document.querySelectorAll('[data-f]').forEach(el => { form[el.dataset.f]=el.value; });
+  if(!form.date||!form.from) { alert('Date and From are required'); return; }
+  if(editId) {
+    entries = entries.map(e=>e.id===editId?{...form,id:editId}:e);
+    editId=null;
+  } else {
+    entries = [...entries, {...form, id:Date.now().toString()}];
+  }
+  showForm=false; form=ef();
+  store.save(entries); render();
+}
+
+function exportJSON() {
+  const blob = new Blob([JSON.stringify(entries,null,2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'data.json';
+  a.click();
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+(async () => {
+  const saved = await store.load();
+  if (saved && saved.length) entries = saved;
+  render();
+})();
+</script>
+</body>
+</html>
