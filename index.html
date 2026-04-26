@@ -129,44 +129,9 @@ const INITIAL_DATA=[
 ];
 
 // ── STORAGE ───────────────────────────────────────────────────────────────────
-const isLocal = false; // always use Cloudflare Worker
-
-// Cloudflare Worker endpoints — update these after deploying your Worker
-const CF_LOAD = 'https://travel-ap.rathirajk.workers.dev/api/load';
-const CF_SAVE = 'https://travel-ap.rathirajk.workers.dev/api/save';
-
 const store = {
-  async load() {
-    if (isLocal) {
-      // 1. Try data.json in same folder (works if served by a local server)
-      try {
-        const r = await fetch('data.json?' + Date.now(), {cache:'no-store'});
-        if (r.ok) { const d = await r.json(); if (Array.isArray(d)) return d; }
-      } catch(_) {}
-      // 2. Fallback to localStorage
-      const d = localStorage.getItem('travel-tracker-v1');
-      return d ? JSON.parse(d) : null;
-    } else {
-      try {
-        const r = await fetch(CF_LOAD);
-        if (r.ok) { const d = await r.json(); if (Array.isArray(d)) return d; }
-      } catch(_) {}
-      return null;
-    }
-  },
-  async save(data) {
-    if (isLocal) {
-      localStorage.setItem('travel-tracker-v1', JSON.stringify(data));
-    } else {
-      try {
-        await fetch(CF_SAVE, {
-          method:'POST',
-          headers:{'Content-Type':'application/json'},
-          body: JSON.stringify(data)
-        });
-      } catch(_) {}
-    }
-  }
+  load() { return null; },
+  save() {}
 };
 
 const TRAVELERS = ['Raj','Kokeela','Both','Pranjali','Vedant','Praneet'];
@@ -346,7 +311,7 @@ function formHtml() {
 // ── MAIN RENDER ───────────────────────────────────────────────────────────────
 function render() {
   const root = document.getElementById('root');
-  const modeLabel = isLocal ? (location.protocol==='file:' ? 'file mode' : 'localhost mode') : 'cloudflare mode';
+  const modeLabel = '';
 
   root.innerHTML = `
     <div class="header">
@@ -365,13 +330,7 @@ function render() {
     </div>
     ${showForm ? formHtml() : ''}
     <div id="view-area">${view==='list' ? listHtml() : calHtml()}</div>
-    <div class="footer">
-      <div class="footer-left">
-        <span class="mode-pill">${modeLabel}</span>
-        <button id="exportBtn" style="border:none;background:none;color:#aaa;text-decoration:underline;padding:0;font-size:12px">Export JSON</button>
-      </div>
-      <button id="resetBtn" style="font-size:12px;opacity:.4">Reset to original</button>
-    </div>`;
+    <div class="footer"><div class="footer-left"></div></div>`;
 
   // Header controls
   document.getElementById('fltSel').onchange = e => { filterTraveler=e.target.value; render(); };
@@ -380,10 +339,7 @@ function render() {
   document.getElementById('btnForm').onclick = () => {
     showForm=!showForm; if(!showForm){editId=null;form=ef();} render();
   };
-  document.getElementById('exportBtn').onclick = exportJSON;
-  document.getElementById('resetBtn').onclick = () => {
-    if(confirm('Reset all data to original 28 entries?')){ entries=[...INITIAL_DATA]; store.save(entries); render(); }
-  };
+
 
   // Form controls
   if (showForm) {
@@ -439,20 +395,10 @@ function saveEntry() {
   store.save(entries); render();
 }
 
-function exportJSON() {
-  const blob = new Blob([JSON.stringify(entries,null,2)], {type:'application/json'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'data.json';
-  a.click();
-}
+
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
-(async () => {
-  const saved = await store.load();
-  if (saved && saved.length) entries = saved;
-  render();
-})();
+render();
 </script>
 </body>
 </html>
