@@ -398,7 +398,10 @@ function saveEntry() {
 
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
-render();
+fetch('data.json?' + Date.now())
+  .then(r => r.ok ? r.json() : null)
+  .then(saved => { if (saved && saved.length) entries = saved; render(); })
+  .catch(() => render());
 </script>
 </body>
 </html>

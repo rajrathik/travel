@@ -7,449 +7,81 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f4f1;color:#1a1a1a;padding:16px;max-width:760px;margin:0 auto}
-a{color:#185FA5;text-decoration:none}
-a:hover{text-decoration:underline}
-
-/* Header */
+a{color:#185FA5;text-decoration:none}a:hover{text-decoration:underline}
+.back-link{font-size:13px;color:#185FA5;display:inline-block;margin-bottom:12px}
 .page-header{background:#fff;border-radius:16px;padding:20px 24px;margin-bottom:20px;border:.5px solid #e5e5e5}
 .page-header h1{font-size:22px;font-weight:700;margin-bottom:4px}
 .page-header .sub{font-size:13px;color:#888}
-.back-link{font-size:13px;color:#185FA5;display:inline-block;margin-bottom:12px}
-
-/* Day block */
-.day-block{background:#fff;border-radius:16px;padding:0;margin-bottom:16px;border:.5px solid #e5e5e5;overflow:hidden}
+.day-block{background:#fff;border-radius:16px;margin-bottom:16px;border:.5px solid #e5e5e5;overflow:hidden}
 .day-header{display:flex;align-items:center;gap:14px;padding:14px 20px;border-bottom:.5px solid #f0f0f0;background:#fafaf9}
 .day-date{min-width:48px;text-align:center}
 .day-date .dow{font-size:11px;color:#999;text-transform:uppercase;font-weight:600}
 .day-date .num{font-size:28px;font-weight:700;line-height:1;color:#185FA5}
 .day-date .mon{font-size:11px;color:#999;font-weight:500}
-.day-title{font-size:15px;font-weight:600;flex:1}
+.day-title{font-size:15px;font-weight:600}
 .day-location{font-size:12px;color:#888;margin-top:2px}
-
-/* Cards inside day */
 .cards{padding:12px 16px;display:flex;flex-direction:column;gap:10px}
-
 .card{border-radius:12px;padding:12px 14px;border:.5px solid #e8e8e8}
-.card.flight{background:#EEF5FD;border-color:#C8DEFA}
-.card.parking{background:#FEF9EE;border-color:#F0DFA8}
-.card.hotel{background:#F0FBF0;border-color:#B6E2B6}
-.card.rental{background:#FDF4FF;border-color:#E2C8F5}
+.card.flight  {background:#EEF5FD;border-color:#C8DEFA}
+.card.parking {background:#FEF9EE;border-color:#F0DFA8}
+.card.hotel   {background:#F0FBF0;border-color:#B6E2B6}
+.card.rental  {background:#FDF4FF;border-color:#E2C8F5}
 .card.activity{background:#FFF4F0;border-color:#F5C8B6}
 .card.day-note{background:#f9f9f7;border-color:#e5e5e5}
-.card.free{background:#F5FFF5;border-color:#B6E2C8}
-
+.card.free    {background:#F5FFF5;border-color:#B6E2C8}
 .card-header{display:flex;align-items:center;gap:8px;margin-bottom:6px}
 .badge{font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px;letter-spacing:.4px;text-transform:uppercase}
-.badge.flight{background:#C8DEFA;color:#185FA5}
-.badge.parking{background:#F0DFA8;color:#7A5C00}
-.badge.hotel{background:#B6E2B6;color:#1B5E1B}
-.badge.rental{background:#E2C8F5;color:#6A0080}
+.badge.flight  {background:#C8DEFA;color:#185FA5}
+.badge.parking {background:#F0DFA8;color:#7A5C00}
+.badge.hotel   {background:#B6E2B6;color:#1B5E1B}
+.badge.rental  {background:#E2C8F5;color:#6A0080}
 .badge.activity{background:#F5C8B6;color:#8B2500}
 .badge.day-note{background:#e5e5e5;color:#555}
-.badge.free{background:#B6E2C8;color:#1B5E30}
-
-.card-title{font-size:13px;font-weight:600}
-.card-status{font-size:11px;margin-left:auto;padding:2px 7px;border-radius:20px;font-weight:600}
+.badge.free    {background:#B6E2C8;color:#1B5E30}
+.card-title{font-size:13px;font-weight:600;flex:1}
+.card-status{font-size:11px;margin-left:auto;padding:2px 7px;border-radius:20px;font-weight:600;white-space:nowrap}
 .card-status.booked{background:#D1FAE5;color:#065F46}
-.card-status.soon{background:#FEF3C7;color:#92400E}
-
-.card-body{font-size:12.5px;color:#444;line-height:1.6}
-.card-body .row{margin-bottom:2px}
-.card-body strong{color:#222;font-weight:600}
+.card-status.soon  {background:#FEF3C7;color:#92400E}
+.card-body{font-size:12.5px;color:#444;line-height:1.7}
+.card-body .row{margin-bottom:1px}
 .card-body .note{color:#888;font-size:12px;margin-top:4px;font-style:italic}
 .card-body a{font-size:12px}
-
-.activities-grid{display:flex;flex-direction:column;gap:6px;margin-top:4px}
-.activity-item{background:#fff;border-radius:8px;padding:8px 10px;border:.5px solid #e5e5e5}
-.activity-item .act-title{font-size:12.5px;font-weight:600;margin-bottom:2px}
-.activity-item .act-desc{font-size:12px;color:#666;line-height:1.5}
-
-/* Warning */
+.act-grid{display:flex;flex-direction:column;gap:6px;margin-top:4px}
+.act-item{background:#fff;border-radius:8px;padding:8px 10px;border:.5px solid #e5e5e5}
+.act-item .at{font-size:12.5px;font-weight:600;margin-bottom:2px}
+.act-item .ad{font-size:12px;color:#666;line-height:1.5}
 .warn{background:#FEF3C7;border:.5px solid #F59E0B;border-radius:8px;padding:8px 12px;font-size:12px;color:#92400E;margin-top:6px}
-
-@media(max-width:480px){
-  body{padding:10px}
-  .day-header{padding:12px 14px}
-  .cards{padding:10px 12px}
-}
+.loading{text-align:center;padding:40px;color:#aaa;font-size:14px}
+@media(max-width:480px){body{padding:10px}.day-header{padding:12px 14px}.cards{padding:10px 12px}}
 </style>
 </head>
 <body>
-
 <a class="back-link" href="index.html">← Travel Itinerary</a>
-
 <div class="page-header">
   <h1>🛩️ Alaska · Jul 2–14, 2026</h1>
   <div class="sub">Rajkumar &amp; Kokeela Rathi &nbsp;·&nbsp; Charlotte → Chicago → Alaska → Charlotte</div>
 </div>
-
-<!-- Jul 2 -->
-<div class="day-block">
-  <div class="day-header">
-    <div class="day-date"><div class="dow">Thu</div><div class="num">2</div><div class="mon">Jul</div></div>
-    <div><div class="day-title">✈️ Fly Charlotte → Chicago</div><div class="day-location">📍 Chicago, IL</div></div>
-  </div>
-  <div class="cards">
-    <div class="card flight">
-      <div class="card-header"><span class="badge flight">Flight</span><span class="card-title">CLT → ORD</span><span class="card-status booked">✓ Booked</span></div>
-      <div class="card-body">
-        <div class="row"><strong>AA 2488</strong> · Departs 6:26 PM · Arrives 7:54 PM · Economy (B)</div>
-        <div class="row">Rajkumar Rathi · AAdvantage® #8J2**** · Ticket: 0012333692505</div>
-        <div class="row"><a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#search/aa+ticket+clt+ord+july/FMfcgzQgLPLKhpZmCjfLZdBsMWQhnSWM" target="_blank">Confirmation: LZJRYG ↗</a></div>
-      </div>
-    </div>
-    <div class="card day-note">
-      <div class="card-header"><span class="badge day-note">Night 0</span><span class="card-title">Chicago — Overnight near O'Hare</span></div>
-      <div class="card-body">Arrive ORD 7:54 PM · Drop car at Routes Airport Parking tomorrow morning (8:30 AM) before Alaska flight</div>
-    </div>
-  </div>
-</div>
-
-<!-- Jul 3 -->
-<div class="day-block">
-  <div class="day-header">
-    <div class="day-date"><div class="dow">Fri</div><div class="num">3</div><div class="mon">Jul</div></div>
-    <div><div class="day-title">✈️ Fly Chicago → Anchorage</div><div class="day-location">📍 Anchorage, AK</div></div>
-  </div>
-  <div class="cards">
-    <div class="card parking">
-      <div class="card-header"><span class="badge parking">Parking</span><span class="card-title">Routes Airport Parking — Uncovered Valet</span><span class="card-status booked">✓ Booked</span></div>
-      <div class="card-body">
-        <div class="row">3901 Mannheim Rd · Drop off <strong>Jul 3 8:30 AM</strong> · Pick up <strong>Jul 13 8:30 AM</strong></div>
-        <div class="row">Subaru Forester DY37282 · (847) 809-2040</div>
-        <div class="note">Show SpotHero pass to valet → they park &amp; shuttle you to ORD. On return: follow ticket → Rental Car Center shuttle (white bus) → Routes shuttle at Bay 1.</div>
-        <div class="row" style="margin-top:4px"><a href="https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLXmMZgjdwLTmStcVFkxFzxGZ" target="_blank">Rental ID: 120856643 · SpotHero ↗</a></div>
-      </div>
-    </div>
-    <div class="card flight">
-      <div class="card-header"><span class="badge flight">Flight</span><span class="card-title">ORD → ANC</span><span class="card-status booked">✓ Booked</span></div>
-      <div class="card-body">
-        <div class="row"><strong>AS 1546</strong> · Departs 10:00 AM · Arrives 1:42 PM · Boeing 737MAX 9</div>
-        <div class="row">Raj: 18E &nbsp;·&nbsp; Kokeela: 18F (Coach)</div>
-        <div class="row"><a href="https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLPLJJhkdvgphbCtdKSqFffFC" target="_blank">Confirmation: FXQIQV ↗</a></div>
-      </div>
-    </div>
-    <div class="card rental">
-      <div class="card-header"><span class="badge rental">Rental Car</span><span class="card-title">Avis · Anchorage Airport</span><span class="card-status booked">✓ Booked</span></div>
-      <div class="card-body">
-        <div class="row">Pick up 2:00 PM · Drop off Jul 8 2:00 PM · $1,273.01</div>
-        <div class="row"><a href="https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLPLKFkMBCBwCFdJKqmNjqRXs" target="_blank">Confirmation: #11823416US3 · Expedia: 73418453791279 ↗</a></div>
-      </div>
-    </div>
-    <div class="card day-note">
-      <div class="card-header"><span class="badge day-note">Day</span><span class="card-title">Arrive 1:42 PM · Pick up rental car</span></div>
-      <div class="card-body">Evening: Tony Knowles Coastal Trail walk along Cook Inlet<br>Dinner: Moose's Tooth Pub &amp; Pizzeria<br>Early bed — Alaska is 5 hrs behind Chicago</div>
-    </div>
-    <div class="card hotel">
-      <div class="card-header"><span class="badge hotel">Stay</span><span class="card-title">Comfort Suites Anchorage International Airport</span><span class="card-status booked">✓ Booked</span></div>
-      <div class="card-body">
-        <div class="row">2919 W International Airport Rd · Check-in <strong>Jul 3 3:00 PM</strong> · Check-out Jul 4 · 1 night</div>
-        <div class="row"><a href="https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLPLKXPmcHDFfswDXrGJMJqkB" target="_blank">View confirmation ↗</a></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Jul 4 -->
-<div class="day-block">
-  <div class="day-header">
-    <div class="day-date"><div class="dow">Sat</div><div class="num">4</div><div class="mon">Jul</div></div>
-    <div><div class="day-title">🛩️🎆 Anchorage → Talkeetna Flightseeing → Denali</div><div class="day-location">📍 Denali National Park</div></div>
-  </div>
-  <div class="cards">
-    <div class="card activity">
-      <div class="card-header"><span class="badge activity">Activity</span><span class="card-title">K2 Aviation · Denali Grand Tour Flightseeing</span><span class="card-status booked">✓ Booked</span></div>
-      <div class="card-body">
-        <div class="row">11:00 AM–12:30 PM · 2 Adults · 14052 East 2nd St, Talkeetna · <strong>Check in 30 min early (10:30 AM)</strong></div>
-        <div class="row">Bring: Sunglasses · Camera</div>
-        <div class="row"><a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#search/alaska/FMfcgzQgLPMSQfvRwZLdDxHzFwxKpbrT" target="_blank">Booking #343543697 ↗</a></div>
-      </div>
-    </div>
-    <div class="card day-note">
-      <div class="card-header"><span class="badge day-note">Day</span><span class="card-title">Drive Anchorage → Talkeetna → Denali</span></div>
-      <div class="card-body">
-        Drive north from Anchorage · Stop in Talkeetna (~2.5 hrs)<br>
-        11:00 AM–12:30 PM: Denali Grand Tour flightseeing — aerial views of the 20,310ft summit, glaciers, and Alaska Range 🛩️<br>
-        Lunch in Talkeetna after flight — quirky frontier town worth exploring<br>
-        Continue north ~2 hrs · Arrive Denali mid-afternoon · July 4th extraordinary daylight 🎆
-      </div>
-    </div>
-    <div class="card free">
-      <div class="card-header"><span class="badge free">Free</span><span class="card-title">🥾 Afternoon Activities — No Booking Needed</span></div>
-      <div class="card-body">
-        <div class="activities-grid">
-          <div class="activity-item"><div class="act-title">🎬 Visitor Center Film + Exhibits</div><div class="act-desc">18-min award-winning park film · Walk-in · Good orientation before bus day</div></div>
-          <div class="activity-item"><div class="act-title">🐕 Sled Dog Demonstration</div><div class="act-desc">Free shuttle from Bus Depot · Runs 10 AM, 2 PM, 4 PM · ~1 hr · Very popular</div></div>
-          <div class="activity-item"><div class="act-title">🚌 Savage River Shuttle</div><div class="act-desc">Free · Mountain Vista (Mile 12) + Savage River (Mile 15) · Hiking trails, Alaska Range views</div></div>
-          <div class="activity-item"><div class="act-title">🦫 Horseshoe Lake Trail</div><div class="act-desc">1.5 mile easy loop · Beautiful lake · Common moose sightings</div></div>
-        </div>
-      </div>
-    </div>
-    <div class="card hotel">
-      <div class="card-header"><span class="badge hotel">Stay</span><span class="card-title">EarthSong Lodge</span><span class="card-status booked">✓ Booked</span></div>
-      <div class="card-body">
-        <div class="row">Mile 4 Stampede Rd, Healy · Check-in Jul 4 · Check-out Jul 6 · <strong>2 nights</strong> · +1 907-683-2863</div>
-        <div class="row"><a href="https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLPLKNvgbRbkdxqWVvcKJkzMW" target="_blank">Confirmation: 72073201303364 ↗</a></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Jul 5 -->
-<div class="day-block">
-  <div class="day-header">
-    <div class="day-date"><div class="dow">Sun</div><div class="num">5</div><div class="mon">Jul</div></div>
-    <div><div class="day-title">🐻🏔️ Denali Full Day</div><div class="day-location">📍 Denali National Park</div></div>
-  </div>
-  <div class="cards">
-    <div class="card activity">
-      <div class="card-header"><span class="badge activity">Activity</span><span class="card-title">Tundra Wilderness Tour Bus</span><span class="card-status booked">✓ Booked</span></div>
-      <div class="card-body">
-        <div class="row">Jul 5 · <strong>6:00 AM–11:30 AM</strong> window · Denali Bus Depot (Mile 1) · 2 adults · $289.50</div>
-        <div class="row"><a href="https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLPLKNtWQWJtLsQXHtRZFdCQf" target="_blank">Reservation: 3EV54T · Itinerary: 30002L8NE ↗</a></div>
-        <div class="warn">⚠️ Check exact time 48 hrs before (Jul 3) at reservedenali.com</div>
-      </div>
-    </div>
-    <div class="card day-note">
-      <div class="card-header"><span class="badge day-note">Day</span><span class="card-title">Full day Tundra Wilderness Tour</span></div>
-      <div class="card-body">62 miles deep into park · Wildlife: grizzly bears, moose, caribou, Dall sheep, wolves<br>Denali (20,310ft) views on clear day · Bring layers — cold deep in the park even in July</div>
-    </div>
-    <div class="card hotel">
-      <div class="card-header"><span class="badge hotel">Stay</span><span class="card-title">EarthSong Lodge (Night 2)</span><span class="card-status booked">✓ Booked</span></div>
-      <div class="card-body"><a href="https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLPLKNvgbRbkdxqWVvcKJkzMW" target="_blank">Confirmation: 72073201303364 ↗</a></div>
-    </div>
-  </div>
-</div>
-
-<!-- Jul 6 -->
-<div class="day-block">
-  <div class="day-header">
-    <div class="day-date"><div class="dow">Mon</div><div class="num">6</div><div class="mon">Jul</div></div>
-    <div><div class="day-title">🛩️ Denali → Seward Highway → Seward</div><div class="day-location">📍 Seward, AK</div></div>
-  </div>
-  <div class="cards">
-    <div class="card day-note">
-      <div class="card-header"><span class="badge day-note">Day</span><span class="card-title">Scenic Drive to Seward</span></div>
-      <div class="card-body">Stop: Alaska Wildlife Conservation Center (~2 hrs) — bears, musk ox, moose<br>Seward Highway scenic drive along Turnagain Arm · Watch for beluga whales at Beluga Point<br>Arrive Seward evening</div>
-    </div>
-    <div class="card hotel">
-      <div class="card-header"><span class="badge hotel">Stay</span><span class="card-title">Exit Glacier Lodge</span><span class="card-status booked">✓ Booked</span></div>
-      <div class="card-body">
-        <div class="row">31842 Herman Leirer Rd, Seward · Check-in <strong>Jul 6 3:00 PM</strong> · Check-out Jul 8 · <strong>2 nights</strong> · Non-cancelable · +1 907-224-6040</div>
-        <div class="row"><a href="https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLPLKXKGtKqJdsglQkDWLTfTn" target="_blank">Confirmation: 72073204360121 ↗</a></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Jul 7 -->
-<div class="day-block">
-  <div class="day-header">
-    <div class="day-date"><div class="dow">Tue</div><div class="num">7</div><div class="mon">Jul</div></div>
-    <div><div class="day-title">🐋🧊 Kenai Fjords Full Day Cruise</div><div class="day-location">📍 Seward, AK</div></div>
-  </div>
-  <div class="cards">
-    <div class="card activity">
-      <div class="card-header"><span class="badge activity">Activity</span><span class="card-title">Major Marine Tours · 8.5 Hr Northwestern Fjord Cruise</span><span class="card-status booked">✓ Booked</span></div>
-      <div class="card-body">
-        <div class="row">Jul 7 · <strong>8:30 AM</strong> · 3 glaciers · Small vessel · Vegetarian lunch included · 2 adults · $680.26 total</div>
-        <div class="row"><a href="https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLPLKXLNXKsBrwjxczTPvjCxL" target="_blank">Order #219070 · majormarine.com ↗</a></div>
-      </div>
-    </div>
-    <div class="card day-note">
-      <div class="card-header"><span class="badge day-note">Day</span><span class="card-title">Full day Kenai Fjords cruise — highlight of the trip</span></div>
-      <div class="card-body">
-        Calving glaciers, humpback whales, sea otters, sea lions, puffins<br>
-        3:30 PM — Back from cruise · Walk to Alaska SeaLife Center (10 min from harbor)<br>
-        4:00 PM — Alaska SeaLife Center · ~2 hrs · $32+/person · Open until 7 PM · alaskasealife.org<br>
-        6:00 PM — Seward Waterfront Park walk · Dinner: best seafood at the harbor
-      </div>
-    </div>
-    <div class="card hotel">
-      <div class="card-header"><span class="badge hotel">Stay</span><span class="card-title">Exit Glacier Lodge (Night 2)</span><span class="card-status booked">✓ Booked</span></div>
-      <div class="card-body"><a href="https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLPLKXKGtKqJdsglQkDWLTfTn" target="_blank">Confirmation: 72073204360121 ↗</a></div>
-    </div>
-  </div>
-</div>
-
-<!-- Jul 8 -->
-<div class="day-block">
-  <div class="day-header">
-    <div class="day-date"><div class="dow">Wed</div><div class="num">8</div><div class="mon">Jul</div></div>
-    <div><div class="day-title">✈️ Seward → Anchorage → Juneau</div><div class="day-location">📍 Juneau, AK</div></div>
-  </div>
-  <div class="cards">
-    <div class="card free">
-      <div class="card-header"><span class="badge free">Free</span><span class="card-title">🥾 Exit Glacier — Morning Hike</span></div>
-      <div class="card-body">
-        <div class="activities-grid">
-          <div class="activity-item"><div class="act-title">Glacier View Loop — easiest</div><div class="act-desc">1.1 miles · 85 ft elevation · 30–60 min · flat, wheelchair accessible</div></div>
-          <div class="activity-item"><div class="act-title">Glacier Overlook Trail — recommended ⭐</div><div class="act-desc">1.8 miles out-and-back · 330–400 ft elevation · 1.5–2 hrs · Year markers showing glacier retreat · Best views</div></div>
-        </div>
-        <div class="warn">⏱ Leave glacier by 9:00 AM → Anchorage by 11:30 AM → Drop car → Board 1:17 PM flight ✅</div>
-      </div>
-    </div>
-    <div class="card flight">
-      <div class="card-header"><span class="badge flight">Flight</span><span class="card-title">ANC → JNU</span><span class="card-status booked">✓ Booked</span></div>
-      <div class="card-body">
-        <div class="row"><strong>AS 66</strong> · Departs 1:17 PM · Arrives 5:40 PM · Boeing 737-700</div>
-        <div class="row">Raj: 24B &nbsp;·&nbsp; Kokeela: 24A · Scenic stops: Cordova &amp; Yakutat</div>
-        <div class="row"><a href="https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLPLJJhkdvgphbCtdKSqFffFC" target="_blank">Confirmation: FXQIQV ↗</a></div>
-      </div>
-    </div>
-    <div class="card rental">
-      <div class="card-header"><span class="badge rental">Rental Car</span><span class="card-title">Juneau Rental Car</span><span class="card-status soon">🟡 Book soon</span></div>
-      <div class="card-body">Pick up JNU airport · Jul 8–12 · ~$200–400 · budget.com</div>
-    </div>
-    <div class="card hotel">
-      <div class="card-header"><span class="badge hotel">Stay</span><span class="card-title">Best Western Country Lane Inn</span><span class="card-status booked">✓ Booked</span></div>
-      <div class="card-body">
-        <div class="row">9300 Glacier Hwy, Juneau · Check-in <strong>Jul 8 3:00 PM</strong> · Check-out Jul 12 · <strong>4 nights</strong> · $1,535.36 · Pay at arrival</div>
-        <div class="row"><a href="https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLPLKXNgQNMlPQnNlmqptFfsz" target="_blank">View confirmation ↗</a></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Jul 9 -->
-<div class="day-block">
-  <div class="day-header">
-    <div class="day-date"><div class="dow">Thu</div><div class="num">9</div><div class="mon">Jul</div></div>
-    <div><div class="day-title">🐋 Whale Watching + Mendenhall</div><div class="day-location">📍 Juneau, AK</div></div>
-  </div>
-  <div class="cards">
-    <div class="card activity">
-      <div class="card-header"><span class="badge activity">Activity</span><span class="card-title">Whale Watching &amp; Wildlife Quest</span><span class="card-status booked">✓ Booked</span></div>
-      <div class="card-body">
-        <div class="row"><strong>8:30 AM–12:30 PM</strong> · 2 adults · $267.79 · Meet downtown Juneau · Green jacket rep · Arrive 15 min early</div>
-        <div class="row"><a href="https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLPLKXMWjGLckHfchnJFlNLKl" target="_blank">Booking #343391720 · True Alaskan Tours ↗</a></div>
-      </div>
-    </div>
-    <div class="card day-note">
-      <div class="card-header"><span class="badge day-note">Day</span><span class="card-title">Afternoon: Mendenhall + Mount Roberts</span></div>
-      <div class="card-body">Back 12:30 PM · Afternoon: Mendenhall Glacier · Nugget Falls hike · Canoe on the lake<br>Evening: Mount Roberts Tramway for sunset views</div>
-    </div>
-    <div class="card hotel">
-      <div class="card-header"><span class="badge hotel">Stay</span><span class="card-title">Best Western Country Lane Inn (Night 2)</span><span class="card-status booked">✓ Booked</span></div>
-      <div class="card-body"><a href="https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLPLKXNgQNMlPQnNlmqptFfsz" target="_blank">View confirmation ↗</a></div>
-    </div>
-  </div>
-</div>
-
-<!-- Jul 10 -->
-<div class="day-block">
-  <div class="day-header">
-    <div class="day-date"><div class="dow">Fri</div><div class="num">10</div><div class="mon">Jul</div></div>
-    <div><div class="day-title">🥾 Free Day — Juneau</div><div class="day-location">📍 Juneau, AK</div></div>
-  </div>
-  <div class="cards">
-    <div class="card day-note">
-      <div class="card-header"><span class="badge day-note">Day</span><span class="card-title">Explore Juneau</span></div>
-      <div class="card-body">Old Glacier Highway drive to end of road<br>Perseverance Trail hike through Gold Rush ruins<br>Alaska State Capitol — free tour · Alaska State Museum<br>Celebration dinner 🍺</div>
-    </div>
-    <div class="card hotel">
-      <div class="card-header"><span class="badge hotel">Stay</span><span class="card-title">Best Western Country Lane Inn (Night 3)</span><span class="card-status booked">✓ Booked</span></div>
-      <div class="card-body"><a href="https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLPLKXNgQNMlPQnNlmqptFfsz" target="_blank">View confirmation ↗</a></div>
-    </div>
-  </div>
-</div>
-
-<!-- Jul 11 -->
-<div class="day-block">
-  <div class="day-header">
-    <div class="day-date"><div class="dow">Sat</div><div class="num">11</div><div class="mon">Jul</div></div>
-    <div><div class="day-title">🛥️ Endicott Arm Full Day Cruise</div><div class="day-location">📍 Juneau, AK</div></div>
-  </div>
-  <div class="cards">
-    <div class="card activity">
-      <div class="card-header"><span class="badge activity">Activity</span><span class="card-title">Tracy Arm–Fords Terror Wilderness &amp; Glacier Explorer</span><span class="card-status booked">✓ Booked</span></div>
-      <div class="card-body">
-        <div class="row"><strong>9:00 AM–5:30 PM</strong> · 2 adults · $695.60 · 76 Egan Drive, Seadrome Dock · Arrive 15 min early · Picnic lunch included</div>
-        <div class="row"><a href="https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLPLKXMWjGLckHfchnJFlNLKl" target="_blank">Booking #343391717 · True Alaskan Tours ↗</a></div>
-      </div>
-    </div>
-    <div class="card day-note">
-      <div class="card-header"><span class="badge day-note">Day</span><span class="card-title">Full day Endicott Arm</span></div>
-      <div class="card-body">Sheer cliff walls, calving Dawes Glacier, floating icebergs, harbor seals<br>Completely different from Kenai Fjords — narrow dramatic fjord, more intimate ice experience<br>Back 5:30 PM · Pack in the evening — fly home tomorrow</div>
-    </div>
-    <div class="card hotel">
-      <div class="card-header"><span class="badge hotel">Stay</span><span class="card-title">Best Western Country Lane Inn (Night 4)</span><span class="card-status booked">✓ Booked</span></div>
-      <div class="card-body"><a href="https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLPLKXNgQNMlPQnNlmqptFfsz" target="_blank">View confirmation ↗</a></div>
-    </div>
-  </div>
-</div>
-
-<!-- Jul 12 -->
-<div class="day-block">
-  <div class="day-header">
-    <div class="day-date"><div class="dow">Sun</div><div class="num">12</div><div class="mon">Jul</div></div>
-    <div><div class="day-title">✈️ Fly Home — JNU → SEA → ORD</div><div class="day-location">📍 In the air</div></div>
-  </div>
-  <div class="cards">
-    <div class="card flight">
-      <div class="card-header"><span class="badge flight">Flight</span><span class="card-title">JNU → SEA</span><span class="card-status booked">✓ Booked</span></div>
-      <div class="card-body">
-        <div class="row"><strong>AS 66</strong> · Departs 6:31 PM · Arrives 9:57 PM · Boeing 737-700</div>
-        <div class="row">Raj: 24B &nbsp;·&nbsp; Kokeela: 24A</div>
-        <div class="row"><a href="https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLPLJJhkdvgphbCtdKSqFffFC" target="_blank">Confirmation: FXQIQV ↗</a></div>
-      </div>
-    </div>
-    <div class="card flight">
-      <div class="card-header"><span class="badge flight">Flight</span><span class="card-title">SEA → ORD</span><span class="card-status booked">✓ Booked</span></div>
-      <div class="card-body">
-        <div class="row"><strong>AS 328</strong> · Departs 12:17 AM (Jul 13) · Arrives 6:20 AM · Boeing 737-900</div>
-        <div class="row">Raj: 20E &nbsp;·&nbsp; Kokeela: 20F</div>
-        <div class="row"><a href="https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLPLJJhkdvgphbCtdKSqFffFC" target="_blank">Confirmation: FXQIQV ↗</a></div>
-      </div>
-    </div>
-    <div class="card day-note">
-      <div class="card-header"><span class="badge day-note">Night 10</span><span class="card-title">Overnight flight</span></div>
-      <div class="card-body">Free morning in Juneau · Drop rental car · Board AS 66 at 6:31 PM → Seattle · Connect AS 328 at 12:17 AM → Land Chicago 6:20 AM Mon Jul 13 🏠</div>
-    </div>
-  </div>
-</div>
-
-<!-- Jul 13 -->
-<div class="day-block">
-  <div class="day-header">
-    <div class="day-date"><div class="dow">Mon</div><div class="num">13</div><div class="mon">Jul</div></div>
-    <div><div class="day-title">🏠 Land Chicago · Pick Up Car</div><div class="day-location">📍 Chicago, IL</div></div>
-  </div>
-  <div class="cards">
-    <div class="card day-note">
-      <div class="card-header"><span class="badge day-note">Day</span><span class="card-title">Back in Chicago</span></div>
-      <div class="card-body">
-        6:20 AM: Land ORD from overnight SEA→ORD flight<br>
-        Pick up Subaru Forester from Routes Airport Parking · 3901 Mannheim Rd · Routes shuttle from Bay 1 at Rental Car Center → show valet ticket<br>
-        Parking reservation ends 8:30 AM — perfect timing ✅<br>
-        Free day in Chicago · Overnight before early morning CLT flight
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Jul 14 -->
-<div class="day-block">
-  <div class="day-header">
-    <div class="day-date"><div class="dow">Tue</div><div class="num">14</div><div class="mon">Jul</div></div>
-    <div><div class="day-title">✈️ Fly Chicago → Charlotte · Home!</div><div class="day-location">📍 Charlotte, NC</div></div>
-  </div>
-  <div class="cards">
-    <div class="card flight">
-      <div class="card-header"><span class="badge flight">Flight</span><span class="card-title">ORD → CLT</span><span class="card-status booked">✓ Booked</span></div>
-      <div class="card-body">
-        <div class="row"><strong>AA 1784</strong> · Departs 7:00 AM · Arrives 10:08 AM · Economy (B)</div>
-        <div class="row">Rajkumar Rathi · AAdvantage® #8J2**** · Ticket: 0012333692505</div>
-        <div class="row"><a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#search/aa+ticket+clt+ord+july/FMfcgzQgLPLKhpZmCjfLZdBsMWQhnSWM" target="_blank">Confirmation: LZJRYG ↗</a></div>
-        <div class="warn">⚠️ 7:00 AM departure — arrive ORD by 5:30 AM at latest</div>
-      </div>
-    </div>
-    <div class="card day-note">
-      <div class="card-header"><span class="badge day-note">🏠</span><span class="card-title">Land Charlotte 10:08 AM · Welcome home!</span></div>
-      <div class="card-body"></div>
-    </div>
-  </div>
-</div>
-
+<div id="root"><div class="loading">Loading itinerary…</div></div>
+<script>
+const BADGE_LABEL={flight:'Flight',parking:'Parking',hotel:'Stay',rental:'Rental Car',activity:'Activity','day-note':'Day',free:'Free'};
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function renderCard(c){
+  const bl=c.badge||BADGE_LABEL[c.type]||c.type;
+  const st=c.status?`<span class="card-status ${c.status}">${c.status==='booked'?'✓ Booked':'🟡 Book soon'}</span>`:'';
+  const rows=(c.rows||[]).map(r=>`<div class="row">${esc(r)}</div>`).join('');
+  const note=c.note?`<div class="note">${esc(c.note)}</div>`:'';
+  const link=c.link?`<div class="row" style="margin-top:4px"><a href="${c.link}" target="_blank">${esc(c.linkText||'Open ↗')}</a></div>`:'';
+  const warn=c.warning?`<div class="warn">${esc(c.warning)}</div>`:'';
+  const acts=(c.activities||[]).length?`<div class="act-grid">${c.activities.map(a=>`<div class="act-item"><div class="at">${esc(a.title)}</div><div class="ad">${esc(a.desc)}</div></div>`).join('')}</div>`:'';
+  return `<div class="card ${c.type}"><div class="card-header"><span class="badge ${c.type}">${esc(bl)}</span><span class="card-title">${esc(c.title)}</span>${st}</div><div class="card-body">${rows}${note}${acts}${link}${warn}</div></div>`;
+}
+function renderDay(d){
+  return `<div class="day-block"><div class="day-header"><div class="day-date"><div class="dow">${esc(d.dow)}</div><div class="num">${esc(d.num)}</div><div class="mon">${esc(d.mon)}</div></div><div><div class="day-title">${esc(d.title)}</div><div class="day-location">📍 ${esc(d.location)}</div></div></div><div class="cards">${(d.cards||[]).map(renderCard).join('')}</div></div>`;
+}
+fetch('alaska.json?'+Date.now())
+  .then(r=>r.json())
+  .then(days=>{document.getElementById('root').innerHTML=days.map(renderDay).join('');})
+  .catch(e=>{document.getElementById('root').innerHTML=`<div class="loading">Error: ${e.message}</div>`;});
+</script>
 </body>
 </html>

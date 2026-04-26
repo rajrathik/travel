@@ -1,0 +1,270 @@
+[
+  {
+    "dow": "Thu", "num": "2", "mon": "Jul",
+    "title": "✈️ Fly Charlotte → Chicago",
+    "location": "Chicago, IL",
+    "cards": [
+      {
+        "type": "flight", "title": "CLT → ORD", "status": "booked",
+        "rows": ["AA 2488 · Departs 6:26 PM · Arrives 7:54 PM · Economy (B)", "Rajkumar Rathi · AAdvantage® #8J2**** · Ticket: 0012333692505"],
+        "link": "https://mail.google.com/mail/u/0/?tab=rm&ogbl#search/aa+ticket+clt+ord+july/FMfcgzQgLPLKhpZmCjfLZdBsMWQhnSWM", "linkText": "Confirmation: LZJRYG ↗"
+      },
+      {
+        "type": "day-note", "title": "Night 0 — Chicago", "badge": "Night 0",
+        "rows": ["Arrive ORD 7:54 PM · Drop car at Routes Airport Parking tomorrow morning (8:30 AM) before Alaska flight"]
+      }
+    ]
+  },
+  {
+    "dow": "Fri", "num": "3", "mon": "Jul",
+    "title": "✈️ Fly Chicago → Anchorage",
+    "location": "Anchorage, AK",
+    "cards": [
+      {
+        "type": "parking", "title": "Routes Airport Parking — Uncovered Valet", "status": "booked",
+        "rows": ["3901 Mannheim Rd · Drop off Jul 3 8:30 AM · Pick up Jul 13 8:30 AM", "Subaru Forester DY37282 · (847) 809-2040"],
+        "note": "Show SpotHero pass to valet → they park & shuttle you to ORD. On return: follow ticket → Rental Car Center shuttle (white bus) → Routes shuttle at Bay 1.",
+        "link": "https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLXmMZgjdwLTmStcVFkxFzxGZ", "linkText": "Rental ID: 120856643 · SpotHero ↗"
+      },
+      {
+        "type": "flight", "title": "ORD → ANC", "status": "booked",
+        "rows": ["AS 1546 · Departs 10:00 AM · Arrives 1:42 PM · Boeing 737MAX 9", "Raj: 18E · Kokeela: 18F (Coach)"],
+        "link": "https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLPLJJhkdvgphbCtdKSqFffFC", "linkText": "Confirmation: FXQIQV ↗"
+      },
+      {
+        "type": "rental", "title": "Avis · Anchorage Airport", "status": "booked",
+        "rows": ["Pick up 2:00 PM · Drop off Jul 8 2:00 PM · $1,273.01"],
+        "link": "https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLPLKFkMBCBwCFdJKqmNjqRXs", "linkText": "Confirmation: #11823416US3 · Expedia: 73418453791279 ↗"
+      },
+      {
+        "type": "day-note", "title": "Arrive 1:42 PM · Pick up rental car",
+        "rows": ["Evening: Tony Knowles Coastal Trail walk along Cook Inlet", "Dinner: Moose's Tooth Pub & Pizzeria", "Early bed — Alaska is 5 hrs behind Chicago"]
+      },
+      {
+        "type": "hotel", "title": "Comfort Suites Anchorage International Airport", "status": "booked",
+        "rows": ["2919 W International Airport Rd · Check-in Jul 3 3:00 PM · Check-out Jul 4 · 1 night"],
+        "link": "https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLPLKXPmcHDFfswDXrGJMJqkB", "linkText": "View confirmation ↗"
+      }
+    ]
+  },
+  {
+    "dow": "Sat", "num": "4", "mon": "Jul",
+    "title": "🛩️🎆 Anchorage → Talkeetna Flightseeing → Denali",
+    "location": "Denali National Park",
+    "cards": [
+      {
+        "type": "activity", "title": "K2 Aviation · Denali Grand Tour Flightseeing", "status": "booked",
+        "rows": ["11:00 AM–12:30 PM · 2 Adults · 14052 East 2nd St, Talkeetna · Check in 30 min early (10:30 AM)", "Bring: Sunglasses · Camera"],
+        "link": "https://mail.google.com/mail/u/0/?tab=rm&ogbl#search/alaska/FMfcgzQgLPMSQfvRwZLdDxHzFwxKpbrT", "linkText": "Booking #343543697 ↗"
+      },
+      {
+        "type": "day-note", "title": "Drive Anchorage → Talkeetna → Denali",
+        "rows": ["Drive north from Anchorage · Stop in Talkeetna (~2.5 hrs)", "11:00 AM–12:30 PM: Denali Grand Tour flightseeing — aerial views of the 20,310ft summit, glaciers, and Alaska Range 🛩️", "Lunch in Talkeetna after flight — quirky frontier town worth exploring", "Continue north ~2 hrs · Arrive Denali mid-afternoon · July 4th extraordinary daylight 🎆"]
+      },
+      {
+        "type": "free", "title": "🥾 Afternoon Activities — No Booking Needed",
+        "activities": [
+          {"title": "🎬 Visitor Center Film + Exhibits", "desc": "18-min award-winning park film · Walk-in · Good orientation before bus day"},
+          {"title": "🐕 Sled Dog Demonstration", "desc": "Free shuttle from Bus Depot · Runs 10 AM, 2 PM, 4 PM · ~1 hr · Very popular"},
+          {"title": "🚌 Savage River Shuttle", "desc": "Free · Mountain Vista (Mile 12) + Savage River (Mile 15) · Hiking trails, Alaska Range views"},
+          {"title": "🦫 Horseshoe Lake Trail", "desc": "1.5 mile easy loop · Beautiful lake · Common moose sightings"}
+        ]
+      },
+      {
+        "type": "hotel", "title": "EarthSong Lodge", "status": "booked",
+        "rows": ["Mile 4 Stampede Rd, Healy · Check-in Jul 4 · Check-out Jul 6 · 2 nights · +1 907-683-2863"],
+        "link": "https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLPLKNvgbRbkdxqWVvcKJkzMW", "linkText": "Confirmation: 72073201303364 ↗"
+      }
+    ]
+  },
+  {
+    "dow": "Sun", "num": "5", "mon": "Jul",
+    "title": "🐻🏔️ Denali Full Day",
+    "location": "Denali National Park",
+    "cards": [
+      {
+        "type": "activity", "title": "Tundra Wilderness Tour Bus", "status": "booked",
+        "rows": ["Jul 5 · 6:00 AM–11:30 AM window · Denali Bus Depot (Mile 1) · 2 adults · $289.50"],
+        "link": "https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLPLKNtWQWJtLsQXHtRZFdCQf", "linkText": "Reservation: 3EV54T · Itinerary: 30002L8NE ↗",
+        "warning": "⚠️ Check exact time 48 hrs before (Jul 3) at reservedenali.com"
+      },
+      {
+        "type": "day-note", "title": "Full day Tundra Wilderness Tour",
+        "rows": ["62 miles deep into park · Wildlife: grizzly bears, moose, caribou, Dall sheep, wolves", "Denali (20,310ft) views on clear day · Bring layers — cold deep in the park even in July"]
+      },
+      {
+        "type": "hotel", "title": "EarthSong Lodge (Night 2)", "status": "booked",
+        "link": "https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLPLKNvgbRbkdxqWVvcKJkzMW", "linkText": "Confirmation: 72073201303364 ↗"
+      }
+    ]
+  },
+  {
+    "dow": "Mon", "num": "6", "mon": "Jul",
+    "title": "🛩️ Denali → Seward Highway → Seward",
+    "location": "Seward, AK",
+    "cards": [
+      {
+        "type": "day-note", "title": "Scenic Drive to Seward",
+        "rows": ["Stop: Alaska Wildlife Conservation Center (~2 hrs) — bears, musk ox, moose", "Seward Highway scenic drive along Turnagain Arm · Watch for beluga whales at Beluga Point", "Arrive Seward evening"]
+      },
+      {
+        "type": "hotel", "title": "Exit Glacier Lodge", "status": "booked",
+        "rows": ["31842 Herman Leirer Rd, Seward · Check-in Jul 6 3:00 PM · Check-out Jul 8 · 2 nights · Non-cancelable · +1 907-224-6040"],
+        "link": "https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLPLKXKGtKqJdsglQkDWLTfTn", "linkText": "Confirmation: 72073204360121 ↗"
+      }
+    ]
+  },
+  {
+    "dow": "Tue", "num": "7", "mon": "Jul",
+    "title": "🐋🧊 Kenai Fjords Full Day Cruise",
+    "location": "Seward, AK",
+    "cards": [
+      {
+        "type": "activity", "title": "Major Marine Tours · 8.5 Hr Northwestern Fjord Cruise", "status": "booked",
+        "rows": ["Jul 7 · 8:30 AM · 3 glaciers · Small vessel · Vegetarian lunch included · 2 adults · $680.26 total"],
+        "link": "https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLPLKXLNXKsBrwjxczTPvjCxL", "linkText": "Order #219070 · majormarine.com ↗"
+      },
+      {
+        "type": "day-note", "title": "Full day Kenai Fjords cruise — highlight of the trip",
+        "rows": ["Calving glaciers, humpback whales, sea otters, sea lions, puffins", "3:30 PM — Back from cruise · Walk to Alaska SeaLife Center (10 min from harbor)", "4:00 PM — Alaska SeaLife Center · ~2 hrs · $32+/person · Open until 7 PM · alaskasealife.org", "6:00 PM — Seward Waterfront Park walk · Dinner: best seafood at the harbor"]
+      },
+      {
+        "type": "hotel", "title": "Exit Glacier Lodge (Night 2)", "status": "booked",
+        "link": "https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLPLKXKGtKqJdsglQkDWLTfTn", "linkText": "Confirmation: 72073204360121 ↗"
+      }
+    ]
+  },
+  {
+    "dow": "Wed", "num": "8", "mon": "Jul",
+    "title": "✈️ Seward → Anchorage → Juneau",
+    "location": "Juneau, AK",
+    "cards": [
+      {
+        "type": "free", "title": "🥾 Exit Glacier — Morning Hike",
+        "activities": [
+          {"title": "Glacier View Loop — easiest", "desc": "1.1 miles · 85 ft elevation · 30–60 min · flat, wheelchair accessible"},
+          {"title": "Glacier Overlook Trail — recommended ⭐", "desc": "1.8 miles out-and-back · 330–400 ft elevation · 1.5–2 hrs · Year markers showing glacier retreat · Best views"}
+        ],
+        "warning": "⏱ Leave glacier by 9:00 AM → Anchorage by 11:30 AM → Drop car → Board 1:17 PM flight ✅"
+      },
+      {
+        "type": "flight", "title": "ANC → JNU", "status": "booked",
+        "rows": ["AS 66 · Departs 1:17 PM · Arrives 5:40 PM · Boeing 737-700", "Raj: 24B · Kokeela: 24A · Scenic stops: Cordova & Yakutat"],
+        "link": "https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLPLJJhkdvgphbCtdKSqFffFC", "linkText": "Confirmation: FXQIQV ↗"
+      },
+      {
+        "type": "rental", "title": "Juneau Rental Car", "status": "soon",
+        "rows": ["Pick up JNU airport · Jul 8–12 · ~$200–400 · budget.com"]
+      },
+      {
+        "type": "hotel", "title": "Best Western Country Lane Inn", "status": "booked",
+        "rows": ["9300 Glacier Hwy, Juneau · Check-in Jul 8 3:00 PM · Check-out Jul 12 · 4 nights · $1,535.36 · Pay at arrival"],
+        "link": "https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLPLKXNgQNMlPQnNlmqptFfsz", "linkText": "View confirmation ↗"
+      }
+    ]
+  },
+  {
+    "dow": "Thu", "num": "9", "mon": "Jul",
+    "title": "🐋 Whale Watching + Mendenhall",
+    "location": "Juneau, AK",
+    "cards": [
+      {
+        "type": "activity", "title": "Whale Watching & Wildlife Quest", "status": "booked",
+        "rows": ["8:30 AM–12:30 PM · 2 adults · $267.79 · Meet downtown Juneau · Green jacket rep · Arrive 15 min early"],
+        "link": "https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLPLKXMWjGLckHfchnJFlNLKl", "linkText": "Booking #343391720 · True Alaskan Tours ↗"
+      },
+      {
+        "type": "day-note", "title": "Afternoon: Mendenhall + Mount Roberts",
+        "rows": ["Back 12:30 PM · Afternoon: Mendenhall Glacier · Nugget Falls hike · Canoe on the lake", "Evening: Mount Roberts Tramway for sunset views"]
+      },
+      {
+        "type": "hotel", "title": "Best Western Country Lane Inn (Night 2)", "status": "booked",
+        "link": "https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLPLKXNgQNMlPQnNlmqptFfsz", "linkText": "View confirmation ↗"
+      }
+    ]
+  },
+  {
+    "dow": "Fri", "num": "10", "mon": "Jul",
+    "title": "🥾 Free Day — Juneau",
+    "location": "Juneau, AK",
+    "cards": [
+      {
+        "type": "day-note", "title": "Explore Juneau",
+        "rows": ["Old Glacier Highway drive to end of road", "Perseverance Trail hike through Gold Rush ruins", "Alaska State Capitol — free tour · Alaska State Museum", "Celebration dinner 🍺"]
+      },
+      {
+        "type": "hotel", "title": "Best Western Country Lane Inn (Night 3)", "status": "booked",
+        "link": "https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLPLKXNgQNMlPQnNlmqptFfsz", "linkText": "View confirmation ↗"
+      }
+    ]
+  },
+  {
+    "dow": "Sat", "num": "11", "mon": "Jul",
+    "title": "🛥️ Endicott Arm Full Day Cruise",
+    "location": "Juneau, AK",
+    "cards": [
+      {
+        "type": "activity", "title": "Tracy Arm–Fords Terror Wilderness & Glacier Explorer", "status": "booked",
+        "rows": ["9:00 AM–5:30 PM · 2 adults · $695.60 · 76 Egan Drive, Seadrome Dock · Arrive 15 min early · Picnic lunch included"],
+        "link": "https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLPLKXMWjGLckHfchnJFlNLKl", "linkText": "Booking #343391717 · True Alaskan Tours ↗"
+      },
+      {
+        "type": "day-note", "title": "Full day Endicott Arm",
+        "rows": ["Sheer cliff walls, calving Dawes Glacier, floating icebergs, harbor seals", "Completely different from Kenai Fjords — narrow dramatic fjord, more intimate ice experience", "Back 5:30 PM · Pack in the evening — fly home tomorrow"]
+      },
+      {
+        "type": "hotel", "title": "Best Western Country Lane Inn (Night 4)", "status": "booked",
+        "link": "https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLPLKXNgQNMlPQnNlmqptFfsz", "linkText": "View confirmation ↗"
+      }
+    ]
+  },
+  {
+    "dow": "Sun", "num": "12", "mon": "Jul",
+    "title": "✈️ Fly Home — JNU → SEA → ORD",
+    "location": "In the air",
+    "cards": [
+      {
+        "type": "flight", "title": "JNU → SEA", "status": "booked",
+        "rows": ["AS 66 · Departs 6:31 PM · Arrives 9:57 PM · Boeing 737-700", "Raj: 24B · Kokeela: 24A"],
+        "link": "https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLPLJJhkdvgphbCtdKSqFffFC", "linkText": "Confirmation: FXQIQV ↗"
+      },
+      {
+        "type": "flight", "title": "SEA → ORD", "status": "booked",
+        "rows": ["AS 328 · Departs 12:17 AM (Jul 13) · Arrives 6:20 AM · Boeing 737-900", "Raj: 20E · Kokeela: 20F"],
+        "link": "https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLPLJJhkdvgphbCtdKSqFffFC", "linkText": "Confirmation: FXQIQV ↗"
+      },
+      {
+        "type": "day-note", "title": "Night 10 — Overnight flight", "badge": "Night 10",
+        "rows": ["Free morning in Juneau · Drop rental car", "Board AS 66 at 6:31 PM → Seattle · Connect AS 328 at 12:17 AM → Land Chicago 6:20 AM Mon Jul 13 🏠"]
+      }
+    ]
+  },
+  {
+    "dow": "Mon", "num": "13", "mon": "Jul",
+    "title": "🏠 Land Chicago · Pick Up Car",
+    "location": "Chicago, IL",
+    "cards": [
+      {
+        "type": "day-note", "title": "Back in Chicago",
+        "rows": ["6:20 AM: Land ORD from overnight SEA→ORD flight", "Pick up Subaru Forester from Routes Airport Parking · 3901 Mannheim Rd · Routes shuttle from Bay 1 at Rental Car Center → show valet ticket", "Parking reservation ends 8:30 AM — perfect timing ✅", "Free day in Chicago · Overnight before early morning CLT flight"]
+      }
+    ]
+  },
+  {
+    "dow": "Tue", "num": "14", "mon": "Jul",
+    "title": "✈️ Fly Chicago → Charlotte · Home!",
+    "location": "Charlotte, NC",
+    "cards": [
+      {
+        "type": "flight", "title": "ORD → CLT", "status": "booked",
+        "rows": ["AA 1784 · Departs 7:00 AM · Arrives 10:08 AM · Economy (B)", "Rajkumar Rathi · AAdvantage® #8J2**** · Ticket: 0012333692505"],
+        "link": "https://mail.google.com/mail/u/0/?tab=rm&ogbl#search/aa+ticket+clt+ord+july/FMfcgzQgLPLKhpZmCjfLZdBsMWQhnSWM", "linkText": "Confirmation: LZJRYG ↗",
+        "warning": "⚠️ 7:00 AM departure — arrive ORD by 5:30 AM at latest"
+      },
+      {
+        "type": "day-note", "title": "🏠 Land Charlotte 10:08 AM · Welcome home!",
+        "rows": []
+      }
+    ]
+  }
+]
