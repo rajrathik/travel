@@ -49,8 +49,6 @@ label{font-size:12px;color:#666;display:block;margin-bottom:4px}
 .conf{font-size:12px;font-family:monospace;color:#999;min-width:58px;text-align:right;flex-shrink:0}
 a.olink{font-size:12px;color:#185FA5;text-decoration:none;white-space:nowrap}
 a.olink:hover{text-decoration:underline}
-.act-btn{font-size:12px;padding:3px 8px;opacity:.5}
-.del-btn{font-size:12px;padding:3px 8px;opacity:.5;color:#c0392b}
 
 /* calendar */
 .cal-wrap{display:grid;grid-template-columns:1fr 300px;gap:1.5rem;align-items:start}
@@ -128,25 +126,13 @@ const INITIAL_DATA=[
   {id:"28",date:"2026-05-20",type:"parking",traveler:"Raj",    from:"CLT",to:"",   airline:"The Parking Spot",                 flightNum:"",confirmation:"",           depart:"4:00 PM",  arrive:"May 27 4:00 PM",link:"https://mail.google.com/mail/u/0/#search/125886656/FMfcgzQgLPMRTkCKkpDPMrkPWXWcWqjs", notes:"Uncovered self-park · 6210 Wilkinson Blvd, Charlotte NC 28214 · 704-398-3776"}
 ];
 
-// ── STORAGE ───────────────────────────────────────────────────────────────────
-const store = {
-  load() { return null; },
-  save() {}
-};
-
 const TRAVELERS = ['Raj','Kokeela','Both','Pranjali','Vedant','Praneet'];
 let entries = [...INITIAL_DATA];
 let view = 'list';
-let showForm = false;
-let editId = null;
 let filterTraveler = 'All';
-let form = ef();
 let calY = 2026, calM = 3; // April 2026 (0-indexed month)
 let selDay = null;
 
-function ef() {
-  return {date:'',type:'flight',traveler:'Raj',from:'',to:'',airline:'American Airlines',flightNum:'',confirmation:'',depart:'',arrive:'',link:'',notes:''};
-}
 
 // ── HELPERS ───────────────────────────────────────────────────────────────────
 function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
@@ -191,8 +177,6 @@ function cardHtml(e, compact) {
     ${e.confirmation?`<span class="conf">${esc(e.confirmation)}</span>`:''}
     <span class="badge ${tClass(e.traveler)}">${esc(e.traveler)}</span>
     ${e.link?`<a class="olink" href="${escHref(e.link)}" target="_blank">open ↗</a>`:''}
-    <button class="act-btn" data-edit="${esc(e.id)}">edit</button>
-    <button class="del-btn" data-del="${esc(e.id)}">&#215;</button>
   </div>`;
 }
 
@@ -276,38 +260,6 @@ function calHtml() {
 }
 
 // ── FORM HTML ─────────────────────────────────────────────────────────────────
-function formHtml() {
-  const f = form;
-  const fi = (k,ph) => `<input type="text" data-f="${k}" value="${esc(f[k]||'')}" placeholder="${ph||''}">`;
-  return `<div class="form-panel">
-    <h3>${editId?'Edit entry':'New entry'}</h3>
-    <div class="g3">
-      <div><label>Date *</label><input type="date" data-f="date" value="${f.date}"></div>
-      <div><label>Type</label><select data-f="type">${['flight','parking','appt'].map(v=>`<option${f.type===v?' selected':''}>${v}</option>`).join('')}</select></div>
-      <div><label>Traveler</label><select data-f="traveler">${TRAVELERS.map(v=>`<option${f.traveler===v?' selected':''}>${v}</option>`).join('')}</select></div>
-    </div>
-    <div class="g2">
-      <div><label>From *</label>${fi('from','CLT')}</div>
-      <div><label>To</label>${fi('to','ORD')}</div>
-    </div>
-    <div class="g2">
-      <div><label>Airline / Facility</label>${fi('airline','')}</div>
-      <div><label>Flight #</label>${fi('flightNum','AA 1234')}</div>
-    </div>
-    <div class="g3">
-      <div><label>Confirmation</label>${fi('confirmation','')}</div>
-      <div><label>Depart</label>${fi('depart','9:00 AM')}</div>
-      <div><label>Arrive</label>${fi('arrive','11:00 AM')}</div>
-    </div>
-    <div class="ff"><label>Link</label>${fi('link','https://...')}</div>
-    <div class="ff"><label>Notes</label>${fi('notes','')}</div>
-    <div style="display:flex;gap:8px;margin-top:4px">
-      <button class="primary" id="saveBtn">${editId?'Update':'Save'}</button>
-      <button id="cancelBtn">Cancel</button>
-    </div>
-  </div>`;
-}
-
 // ── MAIN RENDER ───────────────────────────────────────────────────────────────
 function render() {
   const root = document.getElementById('root');
@@ -325,10 +277,8 @@ function render() {
         </select>
         <button id="btnList" class="${view==='list'?'active':''}">List</button>
         <button id="btnCal"  class="${view==='calendar'?'active':''}">Calendar</button>
-        <button id="btnForm">${showForm?'Cancel':'+ Add'}</button>
       </div>
     </div>
-    ${showForm ? formHtml() : ''}
     <div id="view-area">${view==='list' ? listHtml() : calHtml()}</div>
     <div class="footer"><div class="footer-left"></div></div>`;
 
@@ -336,36 +286,6 @@ function render() {
   document.getElementById('fltSel').onchange = e => { filterTraveler=e.target.value; render(); };
   document.getElementById('btnList').onclick = () => { view='list'; render(); };
   document.getElementById('btnCal').onclick  = () => { view='calendar'; render(); };
-  document.getElementById('btnForm').onclick = () => {
-    showForm=!showForm; if(!showForm){editId=null;form=ef();} render();
-  };
-
-
-  // Form controls
-  if (showForm) {
-    document.querySelectorAll('[data-f]').forEach(el => {
-      el.oninput = el.onchange = () => { form[el.dataset.f] = el.value; };
-    });
-    document.getElementById('saveBtn').onclick = saveEntry;
-    document.getElementById('cancelBtn').onclick = () => { showForm=false; editId=null; form=ef(); render(); };
-  }
-
-  // List edit/delete
-  document.querySelectorAll('[data-edit]').forEach(btn => {
-    btn.onclick = () => {
-      const e = entries.find(x=>x.id===btn.dataset.edit);
-      if(!e) return;
-      form={...e}; editId=e.id; showForm=true;
-      render(); window.scrollTo({top:0,behavior:'smooth'});
-    };
-  });
-  document.querySelectorAll('[data-del]').forEach(btn => {
-    btn.onclick = () => {
-      if(!confirm('Delete this entry?')) return;
-      entries=entries.filter(x=>x.id!==btn.dataset.del);
-      store.save(entries); render();
-    };
-  });
 
   // Calendar controls
   if (view==='calendar') {
@@ -381,19 +301,7 @@ function render() {
   }
 }
 
-// ── ACTIONS ───────────────────────────────────────────────────────────────────
-function saveEntry() {
-  document.querySelectorAll('[data-f]').forEach(el => { form[el.dataset.f]=el.value; });
-  if(!form.date||!form.from) { alert('Date and From are required'); return; }
-  if(editId) {
-    entries = entries.map(e=>e.id===editId?{...form,id:editId}:e);
-    editId=null;
-  } else {
-    entries = [...entries, {...form, id:Date.now().toString()}];
-  }
-  showForm=false; form=ef();
-  store.save(entries); render();
-}
+
 
 
 
