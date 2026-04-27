@@ -523,5 +523,35 @@
     "arrive": "5:55 PM",
     "link": "https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox/QgrcJHrjCsNCQXNPTxKrCKfwwGrKzpPMwfQ",
     "notes": "Ticket: 0012337558136"
+  },
+  {
+    "id": "502",
+    "date": "2026-08-28",
+    "type": "flight",
+    "traveler": "Kokeela",
+    "from": "ORD",
+    "to": "CLT",
+    "airline": "United Airlines",
+    "flightNum": "UA 1748",
+    "confirmation": "",
+    "depart": "6:15 PM",
+    "arrive": "9:30 PM",
+    "link": "https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox/KtbxLxgKJhpTsTSgTmzBcmmcVNkFFVzwxq",
+    "notes": "Basic Economy (N) · Boeing 737-800"
+  },
+  {
+    "id": "503",
+    "date": "2026-09-01",
+    "type": "flight",
+    "traveler": "Kokeela",
+    "from": "CLT",
+    "to": "ORD",
+    "airline": "United Airlines",
+    "flightNum": "UA 3489",
+    "confirmation": "",
+    "depart": "6:15 AM",
+    "arrive": "7:40 AM",
+    "link": "https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox/KtbxLxgKJhpTsTSgTmzBcmmcVNkFFVzwxq",
+    "notes": "Basic Economy (N) · Embraer E175 · Operated by Republic Airways"
   }
 ]
