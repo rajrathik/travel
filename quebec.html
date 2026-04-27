@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Quebec & Charlevoix · May 22–25, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f1e8;
+    --paper: #fdfaf3;
+    --ink: #1d2a24;
+    --ink-soft: #4a5a51;
+    --rule: #d8cfbe;
+    --forest: #2d4a3a;
+    --moss: #5a7a5e;
+    --river: #6b8b9e;
+    --coral: #c75a3c;
+    --maple: #b87333;
+    --gold: #d4a548;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 120px; }
+
+  body {
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+  }
+
+  /* Header */
+  header.hero {
+    padding: 32px 20px 20px;
+    text-align: center;
+    border-bottom: 1px solid var(--rule);
+    background: var(--paper);
+  }
+  .eyebrow {
+    font-family: 'Inter Tight', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 11px;
+    color: var(--moss);
+    font-weight: 600;
+  }
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(28px, 6vw, 40px);
+    color: var(--forest);
+    margin: 8px 0 4px;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--coral);
+    font-weight: 400;
+  }
+  .dates {
+    font-size: 13px;
+    color: var(--ink-soft);
+    letter-spacing: 0.02em;
+  }
+
+  /* Sticky day tabs */
+  nav.days {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--bg);
+    border-bottom: 1px solid var(--rule);
+    padding: 10px 0;
+    margin-bottom: 28px;
+  }
+  .tabs {
+    display: flex;
+    gap: 6px;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 12px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    flex: 1 0 auto;
+    text-align: center;
+    padding: 10px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    background: var(--paper);
+    transition: all 0.15s;
+    white-space: nowrap;
+    min-width: 90px;
+  }
+  .tab:hover, .tab.active {
+    background: var(--forest);
+    color: var(--paper);
+  }
+  .tab .num {
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+  .tab small {
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 10px;
+    opacity: 0.85;
+  }
+
+  /* Quick jump */
+  .quick-jump {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 36px;
+    padding: 14px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+  }
+  .quick-jump a {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border: 1px solid var(--rule);
+    border-radius: 99px;
+    background: var(--bg);
+  }
+  .quick-jump a:hover {
+    color: var(--coral);
+    border-color: var(--coral);
+  }
+
+  /* Sections */
+  section { margin-bottom: 48px; scroll-margin-top: 100px; }
+
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 26px;
+    color: var(--forest);
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+  }
+  h2 .day-num {
+    font-style: italic;
+    color: var(--coral);
+    font-size: 18px;
+    margin-right: 8px;
+  }
+  .theme {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--moss);
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+  h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 19px;
+    color: var(--forest);
+    margin-bottom: 10px;
+  }
+
+  /* Timeline */
+  .timeline {
+    list-style: none;
+    border-left: 2px solid var(--rule);
+    padding-left: 18px;
+    margin: 6px 0;
+  }
+  .timeline li {
+    position: relative;
+    padding: 10px 0 10px 4px;
+    border-bottom: 1px dotted var(--rule);
+  }
+  .timeline li:last-child { border-bottom: none; }
+  .timeline li::before {
+    content: '';
+    position: absolute;
+    left: -25px;
+    top: 18px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 2px solid var(--moss);
+  }
+  .timeline li.flag::before {
+    background: var(--coral);
+    border-color: var(--coral);
+  }
+  .time {
+    display: inline-block;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    color: var(--coral);
+    font-size: 14px;
+    letter-spacing: 0.01em;
+    margin-right: 8px;
+  }
+  .label {
+    font-weight: 600;
+    color: var(--forest);
+  }
+  .timeline .note {
+    display: block;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    margin-top: 3px;
+    line-height: 1.5;
+  }
+  .timeline .note strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* Day 3 simple list */
+  .stops {
+    list-style: none;
+    margin: 6px 0;
+  }
+  .stops li {
+    padding: 10px 0;
+    border-bottom: 1px dotted var(--rule);
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    gap: 10px;
+  }
+  .stops li:last-child { border-bottom: none; }
+  .stops .pin {
+    color: var(--moss);
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 13px;
+    padding-top: 1px;
+  }
+  .stops .stop-name {
+    font-weight: 600;
+    color: var(--forest);
+    display: block;
+  }
+  .stops .stop-desc {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  /* Cards */
+  .card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin: 14px 0;
+  }
+  .card.warn {
+    border-left: 3px solid var(--coral);
+  }
+  .card.info {
+    border-left: 3px solid var(--river);
+  }
+  .card.note {
+    border-left: 3px solid var(--gold);
+    background: #fbf6e8;
+  }
+  .card h4 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--forest);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card ul { list-style: none; }
+  .card ul li {
+    padding: 6px 0;
+    font-size: 14px;
+    border-bottom: 1px dotted var(--rule);
+  }
+  .card ul li:last-child { border-bottom: none; }
+  .card ul li strong {
+    color: var(--forest);
+    font-weight: 600;
+  }
+
+  /* Table */
+  .nav-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 14px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .nav-table th {
+    text-align: left;
+    background: var(--forest);
+    color: var(--paper);
+    padding: 10px 12px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+  .nav-table td {
+    padding: 10px 12px;
+    border-top: 1px solid var(--rule);
+    vertical-align: top;
+  }
+  .nav-table td:first-child {
+    font-family: 'Fraunces', serif;
+    color: var(--forest);
+    font-weight: 500;
+  }
+
+  /* Reservations */
+  .resa-item {
+    border-left: 3px solid var(--coral);
+    padding: 10px 14px;
+    margin: 10px 0;
+    background: var(--paper);
+    border-radius: 0 6px 6px 0;
+  }
+  .resa-item .name {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    color: var(--forest);
+    font-size: 16px;
+  }
+  .resa-item .day-tag {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 8px;
+    background: var(--coral);
+    color: white;
+    border-radius: 99px;
+    margin-left: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    vertical-align: middle;
+  }
+  .resa-item p {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+
+  .walkin-item {
+    border-left: 3px solid var(--river);
+    padding: 10px 14px;
+    margin: 10px 0;
+    background: var(--paper);
+    border-radius: 0 6px 6px 0;
+  }
+  .walkin-item .name {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    color: var(--forest);
+    font-size: 15px;
+  }
+  .walkin-item p {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+
+  /* Breakfast spots */
+  .spot {
+    padding: 14px 16px;
+    margin: 10px 0;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+  }
+  .spot h4 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    color: var(--forest);
+    font-size: 17px;
+    margin-bottom: 6px;
+    text-transform: capitalize;
+  }
+  .spot p {
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+
+  .food-list {
+    list-style: none;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 6px 16px;
+    margin: 14px 0;
+  }
+  .food-list li {
+    padding: 12px 0;
+    border-bottom: 1px dotted var(--rule);
+    font-size: 14px;
+  }
+  .food-list li:last-child { border-bottom: none; }
+  .food-list li strong {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    color: var(--forest);
+    font-size: 15px;
+    display: block;
+    margin-bottom: 3px;
+  }
+
+  .strategy {
+    counter-reset: step;
+    list-style: none;
+    margin: 12px 0;
+  }
+  .strategy li {
+    counter-increment: step;
+    padding: 10px 0 10px 36px;
+    position: relative;
+    border-bottom: 1px dotted var(--rule);
+    font-size: 14px;
+  }
+  .strategy li:last-child { border-bottom: none; }
+  .strategy li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--forest);
+    color: var(--paper);
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+    text-align: center;
+    line-height: 24px;
+    font-weight: 500;
+  }
+  .strategy li strong {
+    color: var(--forest);
+    font-weight: 600;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 24px 0;
+    margin-top: 30px;
+    border-top: 1px solid var(--rule);
+    font-size: 12px;
+    color: var(--ink-soft);
+    font-style: italic;
+    font-family: 'Fraunces', serif;
+  }
+
+  /* Subhead in long sections */
+  .subhead {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--moss);
+    font-weight: 600;
+    margin: 22px 0 8px;
+  }
+
+  hr.soft {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 18px 0;
+  }
+
+  @media (max-width: 600px) {
+    .tab { min-width: 75px; padding: 8px 10px; }
+    .tab .num { font-size: 16px; }
+    h1 { font-size: 26px; }
+    h2 { font-size: 22px; }
+    .nav-table { font-size: 12.5px; }
+    .nav-table th, .nav-table td { padding: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="eyebrow">Itinerary</div>
+  <h1>Quebec City <em>&</em> Charlevoix</h1>
+  <div class="dates">May 22 – 25, 2026 · 4 days · vegetarian · 775 Honoré-Mercier Ave</div>
+</header>
+
+<nav class="days">
+  <div class="tabs">
+    <a class="tab" href="#logistics"><span class="num">·</span><small>Logistics</small></a>
+    <a class="tab" href="#day1"><span class="num">1</span><small>Fri · Old QC</small></a>
+    <a class="tab" href="#day2"><span class="num">2</span><small>Sat · Charlevoix</small></a>
+    <a class="tab" href="#day3"><span class="num">3</span><small>Sun · Île d'O</small></a>
+    <a class="tab" href="#day4"><span class="num">4</span><small>Mon · Falls</small></a>
+    <a class="tab" href="#summary"><span class="num">≡</span><small>Summary</small></a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <div class="quick-jump">
+    <a href="#reservations">Reservations</a>
+    <a href="#walkins">Walk-ins</a>
+    <a href="#breakfast">Sun Breakfast</a>
+    <a href="#foods">Foods to Try</a>
+    <a href="#strategy">Sun Strategy</a>
+  </div>
+
+  <!-- LOGISTICS -->
+  <section id="logistics">
+    <h2><span class="day-num">·</span>Pre-Trip Logistics Checklist</h2>
+    <div class="card warn">
+      <ul>
+        <li><strong>Parking:</strong> Use the SPAQ Honoré-Mercier / Dauphine garage (3-minute walk from your hotel).</li>
+        <li><strong>Park Access:</strong> Keep your confirmation <strong>39745659</strong> ready for Saturday, May 23.</li>
+        <li><strong>Reservations:</strong> Recommended for dinner on Day 1 (Bistro Hortus) and Day 2 (Les Labours).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- DAY 1 -->
+  <section id="day1">
+    <h2><span class="day-num">Day 1</span>Friday, May 22 — Arrival & Old Quebec</h2>
+    <div class="theme">Theme: Easy Arrival & European Vibes</div>
+
+    <ul class="timeline">
+      <li>
+        <span class="time">3:00 PM</span><span class="label">Land at YQB</span>
+        <span class="note">Uber to your hotel (775 Honoré-Mercier Ave).</span>
+      </li>
+      <li>
+        <span class="time">4:30 PM</span><span class="label">Check in & freshen up</span>
+      </li>
+      <li>
+        <span class="time">5:15 PM</span><span class="label">Start walking loop from Porte Saint-Jean</span>
+        <span class="note">10-minute walk from hotel.<br>
+          <strong>Route:</strong> Rue Saint-Jean → Notre-Dame Cathedral → Place d'Armes → Château Frontenac → Dufferin Terrace → Place Royale → Petit-Champlain.
+        </span>
+      </li>
+      <li class="flag">
+        <span class="time">7:30 PM</span><span class="label">Dinner</span>
+        <span class="note"><strong>Bistro Hortus</strong> (farm-to-table vegetarian/organic) <em>or</em> <strong>Don Vegan</strong> (100% vegan).</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- DAY 2 -->
+  <section id="day2">
+    <h2><span class="day-num">Day 2</span>Saturday, May 23 — Charlevoix Nature & Scenic Route</h2>
+    <div class="theme">Theme: Wild Mountains & Coastal Cliffs</div>
+
+    <ul class="timeline">
+      <li>
+        <span class="time">7:30 AM</span><span class="label">Depart Quebec City</span>
+        <span class="note">Heading to Parc national des Hautes-Gorges.</span>
+      </li>
+      <li>
+        <span class="time">10:15 AM</span><span class="label">Arrive at the park</span>
+        <span class="note">Use your booked access for the <strong>L'Érablière trail</strong> (easy river walk).</span>
+      </li>
+      <li>
+        <span class="time">1:00 PM</span><span class="label">Depart for Baie-Saint-Paul</span>
+        <span class="note">Take <strong>Route 362 (Route du Fleuve)</strong>.<br>
+          <strong>Instruction:</strong> Do not take the highway; Route 362 offers the most famous cliffside views of the St. Lawrence.
+        </span>
+      </li>
+      <li>
+        <span class="time">2:30 – 5:30 PM</span><span class="label">Explore Baie-Saint-Paul village</span>
+        <span class="note">Galleries and Chocolaterie Cynthia.</span>
+      </li>
+      <li class="flag">
+        <span class="time">5:30 PM</span><span class="label">Dinner — Restaurant Les Labours</span>
+        <span class="note">High-end local food with a dedicated vegetarian "Earth" menu.</span>
+      </li>
+      <li>
+        <span class="time">8:30 PM</span><span class="label">Return to hotel</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- DAY 3 -->
+  <section id="day3">
+    <h2><span class="day-num">Day 3</span>Sunday, May 24 — History, Cider & Island Life</h2>
+    <div class="theme">Theme: Pastoral Landscapes & Local Harvests</div>
+
+    <div class="subhead">Quebec City Morning</div>
+    <ul class="stops">
+      <li><span class="pin">◦</span><div><span class="stop-name">Breakfast — Le Billig</span><span class="stop-desc">Buckwheat galette with local cheese.</span></div></li>
+      <li><span class="pin">◦</span><div><span class="stop-name">Parliament Building exterior</span><span class="stop-desc">Quick photo stop near your hotel.</span></div></li>
+      <li><span class="pin">◦</span><div><span class="stop-name">Citadelle viewpoint / city walls walk</span><span class="stop-desc">Exterior viewpoint only, not full tour.</span></div></li>
+      <li><span class="pin">◦</span><div><span class="stop-name">Plains of Abraham</span><span class="stop-desc">Historic battlefield park and river-view walk.</span></div></li>
+      <li><span class="pin">◦</span><div><span class="stop-name">Bois-de-Coulonge Park</span><span class="stop-desc">Garden / tree-lined walk.</span></div></li>
+    </ul>
+
+    <div class="subhead">Drive to Île d'Orléans</div>
+    <ul class="stops">
+      <li><span class="pin">◦</span><div><span class="stop-name">Lunch — Cassis Monna & Filles</span><span class="stop-desc">Vegetarian lunch/snack, cassis tasting, terrace if available.</span></div></li>
+      <li><span class="pin">◦</span><div><span class="stop-name">Manoir Mauvide-Genest</span><span class="stop-desc">Historic manor stop.</span></div></li>
+      <li><span class="pin">◦</span><div><span class="stop-name">Cidrerie Verger Bilodeau</span><span class="stop-desc">Ice cider / maple-cider products.</span></div></li>
+      <li><span class="pin">◦</span><div><span class="stop-name">Vignoble Sainte-Pétronille</span><span class="stop-desc">Vineyard stop.</span></div></li>
+      <li><span class="pin">◦</span><div><span class="stop-name">Sainte-Pétronille viewpoint for sunset</span></div></li>
+      <li><span class="pin">◦</span><div><span class="stop-name">Return to Quebec City</span></div></li>
+    </ul>
+
+    <div class="card info">
+      <p style="font-size:13.5px; color:var(--ink-soft);">This keeps your original Day 3 intact and simply inserts the two classic Quebec City additions before Plains/Bois-de-Coulonge.</p>
+    </div>
+  </section>
+
+  <!-- DAY 4 -->
+  <section id="day4">
+    <h2><span class="day-num">Day 4</span>Monday, May 25 — Sunrise, Falls & Flight</h2>
+    <div class="theme">Theme: Maximizing the Final Morning</div>
+
+    <ul class="timeline">
+      <li class="flag">
+        <span class="time">4:45 AM</span><span class="label">Sunrise — Dufferin Terrace</span>
+        <span class="note">(Sunrise is at 4:59 AM). Best time for crowd-free photos.</span>
+      </li>
+      <li>
+        <span class="time">7:30 AM</span><span class="label">Breakfast — Paillard</span>
+        <span class="note">Fast, fresh pastries and coffee.</span>
+      </li>
+      <li>
+        <span class="time">8:45 AM</span><span class="label">Arrive at Montmorency Falls</span>
+        <span class="note">Focus on the suspension bridge for the best view.</span>
+      </li>
+      <li class="flag">
+        <span class="time">10:30 AM</span><span class="label">HARD CUTOFF — Depart the falls for YQB</span>
+      </li>
+      <li>
+        <span class="time">11:15 AM</span><span class="label">Arrive at YQB</span>
+        <span class="note">Return rental car and check in.</span>
+      </li>
+      <li class="flag">
+        <span class="time">1:00 PM</span><span class="label">Flight departs</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- SUMMARY TABLE -->
+  <section id="summary">
+    <h2><span class="day-num">·</span>Quick Navigation Summary</h2>
+    <table class="nav-table">
+      <thead>
+        <tr><th>Destination</th><th>Travel Method</th><th>Key Vegetarian Highlight</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Old Quebec</td><td>10-min Walk</td><td>Don Vegan</td></tr>
+        <tr><td>Hautes-Gorges</td><td>2-hr Drive</td><td>L'Érablière Trail</td></tr>
+        <tr><td>Baie-Saint-Paul</td><td>Scenic Route 362</td><td>Les Labours (Earth Menu)</td></tr>
+        <tr><td>Île d'Orléans</td><td>20-min Drive</td><td>Cidrerie Bilodeau (Ice Cider)</td></tr>
+        <tr><td>Plains of Abraham</td><td>5-min Walk</td><td>Pouding Chômeur at local cafes</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- RESERVATIONS -->
+  <section id="reservations">
+    <h2><span class="day-num">·</span>Highly Recommended Reservations</h2>
+    <p style="font-size:14px; color:var(--ink-soft); margin-bottom:14px;">While not always mandatory, booking ahead is strongly advised for these popular spots:</p>
+
+    <div class="resa-item">
+      <span class="name">Bistro Hortus</span><span class="day-tag">Day 1</span>
+      <p>Known for its farm-to-table organic fare, this spot is a local favorite. Reservations are recommended, especially for Friday evening dining.</p>
+    </div>
+    <div class="resa-item">
+      <span class="name">Don Vegan</span><span class="day-tag">Day 1</span>
+      <p>As Quebec City's premier 100% vegan restaurant, it fills up quickly on weekends. Booking in advance is suggested.</p>
+    </div>
+    <div class="resa-item">
+      <span class="name">Restaurant Les Labours</span><span class="day-tag">Day 2</span>
+      <p>Located in Baie-Saint-Paul, this restaurant is highly popular on Saturday nights. Reservations are strongly recommended to secure your "Earth" menu experience.</p>
+    </div>
+    <div class="resa-item">
+      <span class="name">Le Billig</span><span class="day-tag">Day 3</span>
+      <p>This creperie is small and intimate. If you plan to visit during peak Sunday brunch hours, a reservation is a good idea to avoid a long wait.</p>
+    </div>
+
+    <div class="card note" style="margin-top:18px;">
+      <h4>Confirmed Online Availability — Party of 2</h4>
+      <p style="font-size:13.5px; color:var(--ink-soft); margin-bottom:10px;">The following options have confirmed online availability for May 22–24, 2026:</p>
+      <ul>
+        <li><strong>Bistro Hortus</strong> — Specializing in organic and local "farm-to-table" cuisine, this bistro offers a vibrant atmosphere and high-quality vegetarian dishes.</li>
+        <li><strong>Don Vegan</strong> — Quebec City's top-rated 100% vegan restaurant, offering a creative and modern plant-based dining experience in the heart of the city.</li>
+        <li><strong>Restaurant Les Labours</strong> — A sophisticated dining choice in Baie-Saint-Paul featuring an open kitchen and a menu that highlights the region's best produce.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- WALK-INS -->
+  <section id="walkins">
+    <h2><span class="day-num">·</span>Walk-In Friendly Spots</h2>
+
+    <div class="walkin-item">
+      <span class="name">Cassis Monna & Filles</span> <em style="color:var(--moss); font-size:12px;">— Day 3</em>
+      <p>Their terrace restaurant generally operates on a first-come, first-served basis, though you can browse the boutique and cellar anytime between 10 AM and 5 PM.</p>
+    </div>
+    <div class="walkin-item">
+      <span class="name">Cidrerie Verger Bilodeau & Vignoble Sainte-Pétronille</span> <em style="color:var(--moss); font-size:12px;">— Day 3</em>
+      <p>Standard tastings usually do not require reservations for small groups. However, if you are interested in a formal guided tour, checking their websites for specific time slots is recommended.</p>
+    </div>
+    <div class="walkin-item">
+      <span class="name">Montmorency Falls</span> <em style="color:var(--moss); font-size:12px;">— Day 4</em>
+      <p>You do not need a reservation to walk the grounds or cross the bridge, though you can purchase parking or cable car tickets in advance online to save time on your departure day.</p>
+    </div>
+  </section>
+
+  <!-- BREAKFAST -->
+  <section id="breakfast">
+    <h2><span class="day-num">·</span>Sunday Breakfast — Specialty Vegetarian Spots</h2>
+    <p style="font-size:14px; color:var(--ink-soft); margin-bottom:14px;">For your Sunday morning on May 24, 2026, staying at 775 Av. Honoré-Mercier places you within a 5- to 10-minute walk of several small, unique cafes that offer exceptional vegetarian versions of traditional Québécois breakfast foods. These locations are known for their intimate atmosphere and unique twists on local flavors:</p>
+
+    <div class="spot">
+      <h4>Bistro l'Orygine</h4>
+      <p>Located in the heart of Old Quebec, this bistro specializes in refined, plant-centric cuisine using local organic ingredients. Their brunch is highly regarded for its creative vegetable-forward dishes that offer a modern, elevated take on traditional flavors.</p>
+    </div>
+    <div class="spot">
+      <h4>Le Billig</h4>
+      <p>A charming, small creperie on Rue Saint-Jean known for its authentic buckwheat galettes. They offer a variety of savory vegetarian crepes filled with local cheeses and fresh seasonal vegetables, providing a cozy and unique Québécois-Breton experience.</p>
+    </div>
+    <div class="spot">
+      <h4>La Bûche</h4>
+      <p>This restaurant offers a festive, sugar-shack-inspired atmosphere with a rustic decor. While famous for traditional meats, they provide hearty vegetarian options like "Poor Man's Pudding" (Pouding chômeur) and creative veggie-based omelets.</p>
+    </div>
+  </section>
+
+  <!-- FOODS -->
+  <section id="foods">
+    <h2><span class="day-num">·</span>Unique Foods to Try (Vegetarian Style)</h2>
+    <p style="font-size:14px; color:var(--ink-soft); margin-bottom:6px;">When visiting these spots, look for these specific unique items to get a true taste of the region:</p>
+    <ul class="food-list">
+      <li><strong>Pouding Chômeur (Poor Man's Pudding)</strong>A classic Québécois dessert often served at breakfast, consisting of a white cake batter baked in maple syrup or caramel.</li>
+      <li><strong>Savory Buckwheat Galettes</strong>A traditional staple in Quebec, these are gluten-free crepes made with buckwheat flour. Ask for them filled with local Oka or Migneron cheese and seasonal vegetables.</li>
+      <li><strong>Maple Taffy on Snow</strong>Even in May, some traditional spots like La Bûche may offer maple taffy, where hot maple syrup is poured onto snow and rolled onto a stick.</li>
+      <li><strong>Fèves au Lard (Vegetarian Version)</strong>Look for "Maple Baked Beans" that are prepared without the traditional lard or salt pork. They are a staple of a "full Quebec breakfast" and are richly flavored with local maple syrup.</li>
+    </ul>
+  </section>
+
+  <!-- STRATEGY -->
+  <section id="strategy">
+    <h2><span class="day-num">·</span>Sunday Morning Strategy</h2>
+    <ol class="strategy">
+      <li><strong>Walk to Saint-Jean-Baptiste:</strong> Head toward Rue Saint-Jean for a local, neighborhood feel (10-minute walk from your hotel).</li>
+      <li><strong>Timing:</strong> Sunday brunch is popular. Aim for an 8:30 AM or 9:00 AM start to ensure a seat at smaller spots like Le Billig without a long wait.</li>
+      <li><strong>Local Treat:</strong> Before heading to the Plains of Abraham, stop by a local bakery (boulangerie) on Rue Saint-Jean to grab a maple-infused pastry for your walk.</li>
+    </ol>
+  </section>
+
+  <footer>Bon voyage · Quebec & Charlevoix · May 2026</footer>
+
+</div>
+
+<script>
+  // Highlight active day tab on scroll
+  const tabs = document.querySelectorAll('.tab');
+  const sections = ['logistics','day1','day2','day3','day4','summary'].map(id => document.getElementById(id));
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        tabs.forEach(t => t.classList.remove('active'));
+        const activeTab = document.querySelector(`.tab[href="#${id}"]`);
+        if (activeTab) activeTab.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+
+  sections.forEach(s => { if (s) observer.observe(s); });
+</script>
+
+</body>
+</html>
