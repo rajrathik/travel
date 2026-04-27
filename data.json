@@ -553,5 +553,20 @@
     "arrive": "7:40 AM",
     "link": "https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox/KtbxLxgKJhpTsTSgTmzBcmmcVNkFFVzwxq",
     "notes": "Basic Economy (N) · Embraer E175 · Operated by Republic Airways"
+  },
+    {
+    "id": "504",
+    "date": "2026-08-28",
+    "type": "parking",
+    "traveler": "Kokeela",
+    "from": "ORD",
+    "to": "",
+    "airline": "SpotHero · Routes Airport Parking",
+    "flightNum": "",
+    "confirmation": "#121906223",
+    "depart": "3:30 PM",
+    "arrive": "Sep 1 3:30 PM",
+    "link": "https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox/KtbxLvHXHBRLnbDSCTKSDDvGLnpNQlKtWL",
+    "notes": "Uncovered Valet · Subaru Outback DY37282 · $60.64 · spothero.com/parking-pass/121906223"
   }
 ]
