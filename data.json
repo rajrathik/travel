@@ -643,5 +643,20 @@
     "arrive": "11:00 AM",
     "link": "",
     "notes": ""
+  },
+    {
+    "id": "510",
+    "date": "2026-05-22",
+    "type": "rental",
+    "traveler": "Raj",
+    "from": "YQB",
+    "to": "",
+    "airline": "Turo · Mirage Super Économique 2024",
+    "flightNum": "",
+    "confirmation": "56610905",
+    "depart": "2:00 PM",
+    "arrive": "May 25 2:00 PM",
+    "link": "https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox/FMfcgzQgLXtGkbdbctSZRJkJbXGgfNnF",
+    "notes": "Mitsubishi Mirage 2024 · Québec City Jean Lesage Airport · CA$318.51 · 900 km included · turo.com/reservation/56610905"
   }
 ]
