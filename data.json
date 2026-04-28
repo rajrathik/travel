@@ -658,5 +658,35 @@
     "arrive": "May 25 2:00 PM",
     "link": "https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox/FMfcgzQgLXtGkbdbctSZRJkJbXGgfNnF",
     "notes": "Mitsubishi Mirage 2024 · Québec City Jean Lesage Airport · CA$318.51 · 900 km included · turo.com/reservation/56610905"
+  },
+  {
+    "id": "511",
+    "date": "2026-05-23",
+    "type": "appt",
+    "traveler": "Both",
+    "from": "Hautes-Gorges-de-la-Rivière-Malbaie",
+    "to": "",
+    "airline": "Hautes-Gorges National Park — Daily Access",
+    "flightNum": "",
+    "confirmation": "39745659",
+    "depart": "",
+    "arrive": "",
+    "link": "https://mail.google.com/mail/u/0/#inbox/FMfcgzQgLXtHDLcwLKqLvjXpQzmcHchW",
+    "notes": "2 Adults · Account: 9629971 · Present daily passes at reception · sepaq.com"
+  },
+    {
+    "id": "512",
+    "date": "2026-05-22",
+    "type": "hotel",
+    "traveler": "Raj",
+    "from": "Quebec City QC",
+    "to": "",
+    "airline": "Expedia Hotel · 775 Honoré-Mercier Ave",
+    "flightNum": "",
+    "confirmation": "",
+    "depart": "5:00 PM",
+    "arrive": "May 25 11:00 AM",
+    "link": "https://mail.google.com/mail/u/0/#search/hotel+quebeck/FMfcgzQgLPHqNvdRfRLHLxRRqxRNDHJH",
+    "notes": "Exterior View Suite · 1 Queen + Sofa-bed · 3 adults · $774.26 · Free cancellation until May 21"
   }
 ]
