@@ -1,219 +1,260 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UP Trek Itinerary — Gurnee → Newberry</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500;600;700&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Newberry &amp; Eastern UP Trek Itinerary</title>
 <style>
-  :root{
-    --paper:#FBFAF5;
-    --ink:#1A2620;
-    --forest:#1F4D3A;
-    --lake:#0E7C86;
-    --trek:#B5701B;
-    --hair:#DAD7CA;
-    --mute:#5C6660;
-  }
-  *{box-sizing:border-box;margin:0;padding:0;}
-  html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
-  body{
-    background:#E9E6DC;
-    color:var(--ink);
-    font-family:"Archivo",system-ui,sans-serif;
-    font-size:14px;line-height:1.45;
-    padding:28px 16px;
-  }
-  .sheet{
-    max-width:840px;margin:0 auto;background:var(--paper);
-    padding:40px 44px 32px;
-    box-shadow:0 10px 40px rgba(0,0,0,.14);
-  }
-  .mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;}
-  .nar{font-family:"Archivo Narrow","Arial Narrow",sans-serif;}
-
-  /* ---- masthead ---- */
-  .mast{border-bottom:3px solid var(--forest);padding-bottom:16px;margin-bottom:8px;}
-  .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.22em;
-    text-transform:uppercase;color:var(--lake);font-weight:600;}
-  h1{font-family:"Archivo Narrow",sans-serif;font-weight:700;font-size:40px;
-    line-height:.98;letter-spacing:-.01em;margin:6px 0 2px;color:var(--forest);text-transform:uppercase;}
-  .route{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--mute);margin-top:4px;}
-  .route b{color:var(--ink);font-weight:600;}
-
-  /* ---- stat strip ---- */
-  .stats{display:flex;gap:0;border:1px solid var(--hair);border-radius:3px;overflow:hidden;margin:18px 0 22px;}
-  .stat{flex:1;padding:10px 14px;border-right:1px solid var(--hair);}
-  .stat:last-child{border-right:none;}
-  .stat .n{font-family:"IBM Plex Mono",monospace;font-size:20px;font-weight:600;color:var(--trek);line-height:1;}
-  .stat .n.lk{color:var(--lake);}
-  .stat .l{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-top:5px;}
-
-  /* ---- day block ---- */
-  .day{margin-bottom:22px;page-break-inside:avoid;}
-  .dayhead{display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--hair);padding-bottom:6px;margin-bottom:12px;}
-  .daynum{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:12px;color:#fff;background:var(--forest);
-    padding:3px 8px;border-radius:2px;letter-spacing:.06em;}
-  .daytitle{font-family:"Archivo Narrow",sans-serif;font-weight:700;font-size:20px;text-transform:uppercase;letter-spacing:.01em;}
-  .daymeta{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--mute);text-align:right;}
-  .daymeta b{color:var(--trek);}
-  .daymeta b.lk{color:var(--lake);}
-
-  /* ---- timeline ---- */
-  .leg{display:grid;grid-template-columns:62px 14px 1fr;gap:0;align-items:start;}
-  .time{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--lake);font-weight:500;padding-top:1px;white-space:nowrap;}
-  .spine{position:relative;}
-  .spine::before{content:"";position:absolute;left:6px;top:3px;width:2px;height:100%;background:var(--hair);}
-  .leg:last-child .spine::before{display:none;}
-  .dot{position:absolute;left:1px;top:3px;width:12px;height:12px;border-radius:50%;background:var(--paper);border:2.5px solid var(--forest);z-index:1;}
-  .dot.water{border-color:var(--lake);}
-  .dot.trek{border-color:var(--trek);}
-  .body{padding:0 0 13px 10px;}
-  .body .nm{font-weight:600;font-size:14.5px;}
-  .body .nm .tag{font-family:"IBM Plex Mono",monospace;font-size:10px;font-weight:600;letter-spacing:.04em;
-    padding:1px 6px;border-radius:2px;margin-left:7px;vertical-align:1px;}
-  .tag.mi{background:#F1E4CF;color:var(--trek);}
-  .tag.h2o{background:#D9EDEE;color:var(--lake);}
-  .body .ds{font-size:12.8px;color:var(--mute);margin-top:2px;}
-  .body .ds b{color:var(--ink);font-weight:600;}
-
-  /* ---- carry strip ---- */
-  .carry{margin-top:6px;border:1px dashed var(--trek);border-radius:3px;padding:10px 14px;
-    display:flex;gap:22px;flex-wrap:wrap;background:#FBF4E9;}
-  .carry .h{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--trek);font-weight:600;align-self:center;}
-  .carry .i{font-size:12.5px;}
-  .carry .i b{font-weight:600;}
-
-  .foot{margin-top:18px;border-top:3px solid var(--forest);padding-top:8px;
-    font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--mute);
-    display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;}
-  .tz{color:var(--lake);font-weight:600;}
-
-  @media print{
-    body{background:#fff;padding:0;font-size:12.5px;}
-    .sheet{box-shadow:none;max-width:none;padding:24px 30px;}
-    h1{font-size:34px;}
-    .day{margin-bottom:16px;}
-  }
-</style>
+    :root{
+      --bg:#f6f2e9;
+      --paper:#fffaf0;
+      --ink:#25221d;
+      --muted:#6f675b;
+      --line:#ded2bf;
+      --accent:#9b4b2f;
+      --accent2:#315f57;
+      --gold:#c8943f;
+      --soft:#efe4d0;
+      --shadow:0 18px 50px rgba(49,40,29,.12);
+      --radius:24px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:
+        radial-gradient(circle at top left, rgba(200,148,63,.20), transparent 36rem),
+        radial-gradient(circle at 90% 10%, rgba(49,95,87,.16), transparent 34rem),
+        var(--bg);
+      color:var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height:1.5;
+    }
+    .page{width:min(1120px, calc(100% - 32px)); margin:0 auto; padding:30px 0 56px;}
+    .hero{
+      position:relative;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:linear-gradient(135deg, rgba(255,250,240,.96), rgba(239,228,208,.88));
+      border-radius:32px;
+      padding:34px;
+      box-shadow:var(--shadow);
+    }
+    .hero:after{
+      content:"";
+      position:absolute;
+      width:340px;height:340px;border-radius:50%;
+      right:-110px;top:-120px;
+      background:rgba(49,95,87,.11);
+      border:1px solid rgba(49,95,87,.15);
+    }
+    .eyebrow{font-size:.82rem; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); font-weight:800;}
+    h1{font-size:clamp(2.2rem,5vw,4.7rem); line-height:.95; margin:.45rem 0 .75rem; max-width:850px; letter-spacing:-.05em;}
+    .subtitle{font-size:1.1rem; color:var(--muted); max-width:860px; margin:0;}
+    .pillrow{display:flex; flex-wrap:wrap; gap:10px; margin-top:22px;}
+    .pill{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,.55); color:#4f463d; font-size:.92rem;}
+    .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin:20px 0 24px;}
+    .stat{background:var(--paper); border:1px solid var(--line); border-radius:22px; padding:18px 16px; box-shadow:0 10px 28px rgba(49,40,29,.07);}
+    .stat b{display:block; font-size:1.55rem; letter-spacing:-.03em; color:var(--accent2);}
+    .stat span{font-size:.9rem; color:var(--muted);}
+    .note{
+      border-left:5px solid var(--gold);
+      background:rgba(255,250,240,.72);
+      padding:14px 16px;
+      border-radius:16px;
+      color:#554b40;
+      margin:20px 0 0;
+    }
+    .grid{display:grid; gap:20px;}
+    .day{
+      background:var(--paper);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:0 12px 34px rgba(49,40,29,.08);
+    }
+    .dayhead{
+      display:flex; justify-content:space-between; gap:18px; align-items:flex-start;
+      padding:20px 22px;
+      background:linear-gradient(90deg, rgba(49,95,87,.13), rgba(200,148,63,.10));
+      border-bottom:1px solid var(--line);
+    }
+    .daytag{font-size:.8rem; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); font-weight:900; margin-bottom:4px;}
+    h2{font-size:1.35rem; margin:0; letter-spacing:-.03em;}
+    .daymeta{text-align:right; color:var(--muted); font-weight:700; min-width:180px;}
+    .timeline{padding:8px 22px 22px;}
+    .item{display:grid; grid-template-columns:minmax(160px, 220px) minmax(0, 1fr); gap:22px; padding:15px 0; border-bottom:1px dashed var(--line); align-items:start;}
+    .item:last-child{border-bottom:0;}
+    .time{font-weight:900; color:var(--accent2); white-space:normal; line-height:1.22;}
+    .item h3{margin:0 0 6px; font-size:1.02rem; line-height:1.28; overflow-wrap:anywhere;}
+    .item > div:nth-child(2){min-width:0;}
+    .item p{margin:0; color:var(--muted); overflow-wrap:anywhere;}
+    .badge{display:inline-flex; align-items:center; margin-left:7px; vertical-align:middle; padding:2px 8px; border-radius:999px; background:rgba(155,75,47,.12); color:var(--accent); font-size:.7rem; font-weight:900; letter-spacing:.04em; text-transform:uppercase; white-space:nowrap;}
+    a{color:var(--accent2); font-weight:800; text-decoration:none; border-bottom:1px solid rgba(49,95,87,.35);}
+    a:hover{border-bottom-color:var(--accent2);}
+    .two{display:grid; grid-template-columns:1.1fr .9fr; gap:20px; margin-top:20px;}
+    .card{background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:22px; box-shadow:0 12px 34px rgba(49,40,29,.07);}
+    .card h2{margin-bottom:10px;}
+    ul{margin:10px 0 0; padding-left:20px; color:var(--muted);}
+    li{margin:6px 0;}
+    .route{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background:rgba(49,95,87,.08); border:1px solid rgba(49,95,87,.16); padding:12px 14px; border-radius:16px; color:#334a45; overflow:auto;}
+    footer{margin-top:26px; color:var(--muted); text-align:center; font-size:.92rem;}
+    @media (max-width:800px){
+      .hero{padding:26px 22px; border-radius:24px;}
+      .stats{grid-template-columns:repeat(2,1fr);}
+      .dayhead{display:block;}
+      .daymeta{text-align:left; margin-top:8px;}
+      .item{grid-template-columns:1fr; gap:6px;}
+      .two{grid-template-columns:1fr;}
+    }
+    @media (max-width:560px){
+      .page{width:min(100% - 20px, 1120px);}
+      .stats{grid-template-columns:1fr;}
+      .timeline{padding:8px 16px 18px;}
+      .badge{display:inline-flex; margin-left:0; margin-top:6px;}
+    }
+  </style>
 </head>
 <body>
-<div class="sheet">
-
-  <div class="mast">
-    <div class="eyebrow">Field Itinerary · June 18–21, 2026</div>
-    <h1>Newberry &amp; the Eastern UP</h1>
-    <div class="route"><b>Gurnee, IL</b> → 13954 State Hwy M-28, <b>Newberry, MI</b> &nbsp;·&nbsp; via Mackinac Bridge</div>
-  </div>
-
-  <div class="stats">
-    <div class="stat"><div class="n">~18 mi</div><div class="l">Trail miles (Fri+Sat)</div></div>
-    <div class="stat"><div class="n lk">7+</div><div class="l">Named waterfalls</div></div>
-    <div class="stat"><div class="n">~860 mi</div><div class="l">Round-trip driving</div></div>
-    <div class="stat"><div class="n lk">+1 hr</div><div class="l">Gained heading home</div></div>
-  </div>
-
-  <!-- THURSDAY -->
-  <div class="day">
-    <div class="dayhead">
-      <span class="daynum">DAY 01 · THU</span>
-      <span class="daytitle">Drive Up</span>
-      <span class="daymeta">~430 mi · ~7.5 hr + stops · <b class="lk">lose 1 hr</b> CT→ET</span>
-    </div>
-    <div class="leg"><div class="time">8:00a CT</div><div class="spine"><span class="dot"></span></div>
-      <div class="body"><div class="nm">Depart Gurnee</div>
-      <div class="ds">I-94 → I-69 → I-75 N → Mackinac Bridge → US-2 W → M-117 → M-28.</div></div></div>
-    <div class="leg"><div class="time">~9:30a</div><div class="spine"><span class="dot water"></span></div>
-      <div class="body"><div class="nm">Warren Dunes State Park</div>
-      <div class="ds">First stretch. Climbable Lake Michigan dunes + beach. <b>30–45 min.</b></div></div></div>
-    <div class="leg"><div class="time">~1:30p ET</div><div class="spine"><span class="dot"></span></div>
-      <div class="body"><div class="nm">Hartwick Pines State Park · Grayling</div>
-      <div class="ds">Mid-drive reset + lunch, off I-75. 1.25-mi loop through 350-yr-old white pine. <b>~1 hr.</b></div></div></div>
-    <div class="leg"><div class="time">~3:30p</div><div class="spine"><span class="dot water"></span></div>
-      <div class="body"><div class="nm">Headlands / Mackinac Bridge</div>
-      <div class="ds">Quick bridge-view leg-stretch, then cross the 5-mile span.</div></div></div>
-    <div class="leg"><div class="time">~5:30–6p</div><div class="spine"><span class="dot trek"></span></div>
-      <div class="body"><div class="nm">Arrive base — Newberry</div>
-      <div class="ds">Settle in. Daylight to ~9:45. Easy night before two big days.</div></div></div>
-  </div>
-
-  <!-- FRIDAY -->
-  <div class="day">
-    <div class="dayhead">
-      <span class="daynum">DAY 02 · FRI</span>
-      <span class="daytitle">Tahquamenon River Trail</span>
-      <span class="daymeta">full trek · <b>~8 mi RT</b> + falls</span>
-    </div>
-    <div class="leg"><div class="time">8:00a</div><div class="spine"><span class="dot"></span></div>
-      <div class="body"><div class="nm">Depart base</div>
-      <div class="ds">~40 min north via M-123 through Paradise to the Upper Falls lot. State-park fee ~$11/vehicle.</div></div></div>
-    <div class="leg"><div class="time">~8:45a</div><div class="spine"><span class="dot water"></span></div>
-      <div class="body"><div class="nm">Upper Falls <span class="tag h2o">50 FT</span></div>
-      <div class="ds">Paved loop + Gorge boardwalk down toward the base of the 200-ft-wide drop.</div></div></div>
-    <div class="leg"><div class="time">~10:00a</div><div class="spine"><span class="dot trek"></span></div>
-      <div class="body"><div class="nm">River Trail → Lower Falls <span class="tag mi">~4 mi each way</span></div>
-      <div class="ds">Forested trail along the Tahquamenon. Lower Falls = cascades wrapping a midstream island; boardwalk loop. <b>Hike back the way you came. 5–6 hr, ~8 mi total.</b></div></div></div>
-    <div class="leg"><div class="time">~3:30p</div><div class="spine"><span class="dot water"></span></div>
-      <div class="body"><div class="nm">Whitefish Point</div>
-      <div class="ds">~35 min north. Wild Lake Superior point, shipwreck history, rock-hunting beach. Good payoff, still an easy add. <b>Back to base by evening.</b></div></div></div>
-  </div>
-
-  <!-- SATURDAY -->
-  <div class="day">
-    <div class="dayhead">
-      <span class="daynum">DAY 03 · SAT</span>
-      <span class="daytitle">Chapel Loop · Pictured Rocks</span>
-      <span class="daymeta">full loop · <b>~10.4 mi</b> · 6–8 hr</span>
-    </div>
-    <div class="leg"><div class="time">7:00a</div><div class="spine"><span class="dot"></span></div>
-      <div class="body"><div class="nm">Depart base — early &amp; firm</div>
-      <div class="ds">~1 hr 20 west to Chapel Falls Trailhead (Chapel Rd). <b>Parked by ~8:30</b> — lot fills, latecomers walk a mile of road.</div></div></div>
-    <div class="leg"><div class="time">~8:30a</div><div class="spine"><span class="dot trek"></span></div>
-      <div class="body"><div class="nm">Chapel Loop <span class="tag mi">~10.4 mi</span></div>
-      <div class="ds">Clockwise keeps the cliffs in the middle: <b>Mosquito Falls → Mosquito Beach → ~5 mi of Superior clifftop → Chapel Beach → Chapel Rock → Chapel Falls (60 ft) → back.</b> Easy underfoot, just long.</div></div></div>
-    <div class="leg"><div class="time">option</div><div class="spine"><span class="dot water"></span></div>
-      <div class="body"><div class="nm">Escape route if legs are done</div>
-      <div class="ds">Out-and-back to Chapel Falls + Chapel Rock ≈ 6 mi — keeps the best scenery, drops the Mosquito side.</div></div></div>
-    <div class="leg"><div class="time">~4–5p</div><div class="spine"><span class="dot"></span></div>
-      <div class="body"><div class="nm">Back to base</div>
-      <div class="ds">~1 hr 20 return. Rest — Sunday is a driving day with a deadline.</div></div></div>
-  </div>
-
-  <!-- SUNDAY -->
-  <div class="day">
-    <div class="dayhead">
-      <span class="daynum">DAY 04 · SUN</span>
-      <span class="daytitle">Drive Home</span>
-      <span class="daymeta">~7.5 hr · <b class="lk">gain 1 hr</b> ET→CT · target 4–5p CT</span>
-    </div>
-    <div class="leg"><div class="time">by 8:00a</div><div class="spine"><span class="dot"></span></div>
-      <div class="body"><div class="nm">Depart base</div>
-      <div class="ds">Roll by 8:00a ET to hold the 4–5p CT arrival <b>with both stops below.</b></div></div></div>
-    <div class="leg"><div class="time">~9:00a</div><div class="spine"><span class="dot water"></span></div>
-      <div class="body"><div class="nm">Cut River Bridge <span class="tag h2o">QUICK</span></div>
-      <div class="ds">On US-2. Short walk down to the gorge + Lake Michigan shore under the bridge. <b>~20 min.</b></div></div></div>
-    <div class="leg"><div class="time">~10:15a</div><div class="spine"><span class="dot water"></span></div>
-      <div class="body"><div class="nm">McGulpin Point Lighthouse <span class="tag h2o">QUICK</span></div>
-      <div class="ds">Just past the bridge in Mackinaw City. Tower climb $3, big Straits view. <b>~20 min,</b> then straight south.</div></div></div>
-    <div class="leg"><div class="time">~4:30p CT</div><div class="spine"><span class="dot trek"></span></div>
-      <div class="body"><div class="nm">Home — Gurnee</div>
-      <div class="ds">~6 hr from Mackinaw City. Buffer holds if you don't linger.</div></div></div>
-  </div>
-
-  <div class="carry">
-    <span class="h">Carry</span>
-    <span class="i"><b>Water + food</b> — none on Chapel trail, none on river trail</span>
-    <span class="i"><b>Bug spray</b> — black flies &amp; mosquitoes peak in June</span>
-    <span class="i"><b>Fees</b> — MI state park ~$11/veh · Pictured Rocks NPS entry</span>
-  </div>
-
-  <div class="foot">
-    <span>Munising Falls trail CLOSED (erosion, since Apr 2025) — not on route.</span>
-    <span class="tz">All times Eastern unless marked CT.</span>
-  </div>
+<main class="page">
+<section class="hero">
+<div class="eyebrow">Field Itinerary · June 18–21, 2026</div>
+<h1>Newberry &amp; the Eastern UP</h1>
+<p class="subtitle">Gurnee, IL → 13954 State Hwy M-28, Newberry, MI · using your actual route through Milwaukee, Green Bay, Escanaba, and Manistique — not Mackinac City.</p>
+<div class="pillrow">
+<span class="pill">Outbound stop only: Manistique East Breakwater Lighthouse</span>
+<span class="pill">Return stop only: Kitch-iti-kipi / Palms Book State Park</span>
+<span class="pill">Drive route: Milwaukee → Green Bay both directions</span>
+</div>
+</section>
+<section aria-label="Trip summary" class="stats">
+<div class="stat"><b>~18 mi</b><span>Trail miles Fri + Sat</span></div>
+<div class="stat"><b>7+</b><span>Named waterfalls</span></div>
+<div class="stat"><b>~850–900 mi</b><span>Round-trip driving estimate</span></div>
+<div class="stat"><b>+1 hr</b><span>Gained heading home ET→CT</span></div>
+</section>
+<section class="grid">
+<article class="day">
+<div class="dayhead">
+<div>
+<div class="daytag">Day 01 · Thu</div>
+<h2>Drive Up via Milwaukee, Green Bay &amp; Manistique Lighthouse</h2>
+</div>
+<div class="daymeta">~430–450 mi · ~8 hr driving + one stop</div>
+</div>
+<div class="timeline">
+<div class="item">
+<div class="time">Morning CT</div>
+<div><h3>Depart Gurnee</h3><p>Take the same north route you used: I-94 toward Milwaukee, then Green Bay, Escanaba, Manistique, and onward to Newberry. No Mackinac City and no bridge route.</p></div>
+</div>
+<div class="item">
+<div class="time">Route</div>
+<div><h3>Milwaukee → Green Bay → Escanaba</h3><p>This is the main drive spine. Keep fuel/food stops practical and short because the real scenic break is Manistique.</p></div>
+</div>
+<div class="item">
+<div class="time">Afternoon ET</div>
+<div><h3><a href="https://www.google.com/maps/search/?api=1&amp;query=Manistique+East+Breakwater+Lighthouse" rel="noopener" target="_blank">Manistique East Breakwater Lighthouse</a> <span class="badge">only outbound stop</span></h3><p>Quick Lake Michigan harbor break before the last push to Newberry. Budget about 20–30 minutes unless the weather is perfect and you want more shoreline time.</p></div>
+</div>
+<div class="item">
+<div class="time">After stop</div>
+<div><h3>Manistique → Newberry base</h3><p>Continue north/east toward 13954 State Hwy M-28, Newberry. Settle in and keep the evening easy before the two big hiking days.</p></div>
+</div>
+</div>
+</article>
+<article class="day">
+<div class="dayhead">
+<div>
+<div class="daytag">Day 02 · Fri</div>
+<h2>Tahquamenon River Trail full trek + Whitefish Point</h2>
+</div>
+<div class="daymeta">~8 mi RT + falls</div>
+</div>
+<div class="timeline">
+<div class="item">
+<div class="time">8:00a ET</div>
+<div><h3>Depart base</h3><p>About 40 minutes north via M-123 through Paradise to the Upper Falls lot. State-park fee usually applies for nonresidents.</p></div>
+</div>
+<div class="item">
+<div class="time">~8:45a</div>
+<div><h3>Upper Falls · 50 ft</h3><p>Paved loop plus Gorge boardwalk down toward the base of the wide drop.</p></div>
+</div>
+<div class="item">
+<div class="time">~10:00a</div>
+<div><h3>River Trail → Lower Falls</h3><p>Forested trail along the Tahquamenon. Lower Falls has cascades around a midstream island. Hike back the way you came. Plan about 5–6 hours and roughly 8 miles total.</p></div>
+</div>
+<div class="item">
+<div class="time">~3:30p</div>
+<div><h3>Whitefish Point</h3><p>About 35 minutes north. Wild Lake Superior point, shipwreck history, rock-hunting beach. Good payoff and still an easy add before returning to base.</p></div>
+</div>
+</div>
+</article>
+<article class="day">
+<div class="dayhead">
+<div>
+<div class="daytag">Day 03 · Sat</div>
+<h2>Chapel Loop · Pictured Rocks full loop</h2>
+</div>
+<div class="daymeta">~10.4 mi + short beach/marsh stops · return ~7p</div>
+</div>
+<div class="timeline">
+<div class="item">
+<div class="time">7:00a ET</div>
+<div><h3>Depart base — early &amp; firm</h3><p>About 1 hour 20 minutes west to Chapel Falls Trailhead on Chapel Road. Park by about 8:30; the lot fills and latecomers may have to walk extra road distance.</p></div>
+</div>
+<div class="item">
+<div class="time">~8:30a</div>
+<div><h3>Chapel Loop</h3><p>Clockwise keeps the cliffs in the middle: Mosquito Falls → Mosquito Beach → Lake Superior clifftop → Chapel Beach → Chapel Rock → Chapel Falls → back. Easy underfoot, just long.</p></div>
+</div>
+<div class="item">
+<div class="time">After Chapel Loop</div>
+<div><h3><a href="https://www.google.com/maps/search/?api=1&amp;query=Sand+Point+Marsh+Trail+Munising+MI" rel="noopener" target="_blank">Sand Point Marsh Trail</a></h3><p>Short, easy marsh-boardwalk style stop near Munising before leaving the Pictured Rocks area.</p></div>
+</div>
+<div class="item">
+<div class="time">After marsh trail</div>
+<div><h3><a href="https://www.google.com/maps/search/?api=1&amp;query=Sand+Point+Beach+Munising+MI" rel="noopener" target="_blank">Sand Point Beach</a></h3><p>Quick Lake Superior beach break after the marsh trail. Keep this relaxed but not too long so you can still reach base around 7:00p.</p></div>
+</div>
+<div class="item">
+<div class="time">~7:00p ET</div>
+<div><h3>Back to Newberry base</h3><p>Return to 13954 State Hwy M-28, Newberry. This makes Day 03 a full day: Chapel Loop first, then Sand Point Marsh Trail and Sand Point Beach before heading back.</p></div>
+</div>
+</div>
+</article>
+<article class="day">
+<div class="dayhead">
+<div>
+<div class="daytag">Day 04 · Sun</div>
+<h2>Drive Home via Kitch-iti-kipi, then Green Bay &amp; Milwaukee</h2>
+</div>
+<div class="daymeta">~430–470 mi · one return stop · gain 1 hr ET→CT</div>
+</div>
+<div class="timeline">
+<div class="item">
+<div class="time">Morning ET</div>
+<div><h3>Depart Newberry base</h3><p>Start toward Manistique / Palms Book State Park first. This is the only planned scenic stop before continuing home.</p></div>
+</div>
+<div class="item">
+<div class="time">~1 hr 15m after start</div>
+<div><h3><a href="https://www.google.com/maps/search/?api=1&amp;query=Kitch-iti-kipi+Palms+Book+State+Park" rel="noopener" target="_blank">Kitch-iti-kipi · Palms Book State Park</a> <span class="badge">only return stop</span></h3><p>Michigan’s Big Spring. Take the self-operated observation raft over the clear spring. Budget about 45–60 minutes.</p></div>
+</div>
+<div class="item">
+<div class="time">After stop</div>
+<div><h3>Kitch-iti-kipi → Escanaba → Green Bay → Milwaukee → Gurnee</h3><p>Return using the same general way you came up. No Mackinac City, no Cut River Bridge, no McGulpin Point, and no extra detours.</p></div>
+</div>
+<div class="item">
+<div class="time">Late afternoon CT</div>
+<div><h3>Home — Gurnee</h3><p>You gain one hour crossing from Eastern to Central time, but it is still a long drive. Keep the Kitch-iti-kipi stop tight if you want a cleaner arrival.</p></div>
+</div>
+</div>
+</article>
+</section>
+<section class="two">
+<div class="card">
+<h2>Correct route snapshot</h2>
+<div class="route">Gurnee → Milwaukee → Green Bay → Escanaba → Manistique East Breakwater Lighthouse → Newberry → Tahquamenon → Whitefish Point → Chapel Loop / Pictured Rocks → Sand Point Marsh Trail → Sand Point Beach → Kitch-iti-kipi → Escanaba → Green Bay → Milwaukee → Gurnee</div>
 
 </div>
+
+</section>
+
+</main>
 </body>
 </html>
